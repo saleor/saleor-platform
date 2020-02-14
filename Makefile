@@ -28,7 +28,7 @@ run:
 	@if ! test -f "./saleor/README.md"; then\
 		make init;\
 		make build;\
-    fi
+	fi
 	make run-saleor
 	make run-storefront
 	make run-dashboard

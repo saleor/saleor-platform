@@ -21,15 +21,17 @@ All Saleor services started from a single repository
 1. Clone the repository `git clone git@github.com:mirumee/saleor-platform.git`
 2. Run the command `cd saleor-platform && make run`
 
+### Windows
+1. Clone the repository `git clone git@github.com:mirumee/saleor-platform.git`
+2. Make sure you have shared the drive where the project is cloned in docker Settings -> Shared drives.
+3. Run the command `cd saleor-platform`
+4. Run the command `make.bat run`
+
 You can find the latest version of Saleor, storefront and dashboard in their individual repositories:
 
 - https://github.com/mirumee/saleor
 - https://github.com/mirumee/saleor-dashboard
 - https://github.com/mirumee/saleor-storefront
-
-
-### Windows
-TBD
 
 ## Where is the application running?
 - Saleor backend - http://localhost:8000
