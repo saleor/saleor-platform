@@ -1,5 +1,5 @@
 init:
-	git submodule update --init --remote
+	git submodule update --init --recursive --jobs 3
 
 update:
 	git submodule update --remote
