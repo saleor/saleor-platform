@@ -41,7 +41,7 @@ All Saleor services started from a single repository
 8. Populate the DB and create super user `docker-compose run --rm web python3 manage.py populatedb --createsuperuser`
 9. Run the application `docker-compose up`
 
-# How to update the subprojects into newest versions?
+## How to update the subprojects into newest versions?
 By default, each of the subprojects is bound to particular commit.
 In order to update all of them to their newest master versions, run `git submodule update --remote`
 
@@ -50,6 +50,12 @@ You can find the latest version of Saleor, storefront and dashboard in their ind
 - https://github.com/mirumee/saleor
 - https://github.com/mirumee/saleor-dashboard
 - https://github.com/mirumee/saleor-storefront
+
+
+## How to run application parts?
+  - `docker-compose up web celery` for backend services only
+  - `docker-compose up` for backend and frontend services
+
 
 ## Where is the application running?
 - Saleor backend - http://localhost:8000
