@@ -12,7 +12,7 @@ All Saleor services started from a single repository
 1. Clone the repository `git clone git@github.com:mirumee/saleor-platform.git`
 2. Add the cloned `saleor-platform` directory into docker shared directories (Preferences -> Resources -> File sharing).
 3. Go inside cloned directory `cd saleor-platform`
-4. Fetch the submodules `git submodule update --init --recursive --jobs 3`
+4. Fetch the submodules `git submodule update --init --jobs 3`
 5. Build the application `docker-compose build`
 6. Apply django migrations `docker-compose run --rm web python3 manage.py migrate`
 7. Collect staticfiles `docker-compose run --rm web python3 manage.py collectstatic`
@@ -22,7 +22,7 @@ All Saleor services started from a single repository
 ### Linux
 1. Clone the repository `git clone git@github.com:mirumee/saleor-platform.git`
 2. Go inside cloned directory `cd saleor-platform`
-3. Fetch the submodules `git submodule update --init --recursive --jobs 3`
+3. Fetch the submodules `git submodule update --init --jobs 3`
 4. Build the application `docker-compose build`
 5. Apply django migrations `docker-compose run --rm web python3 manage.py migrate`
 6. Collect staticfiles `docker-compose run --rm web python3 manage.py collectstatic`
@@ -33,7 +33,7 @@ All Saleor services started from a single repository
 1. Clone the repository `git clone git@github.com:mirumee/saleor-platform.git`
 2. Make sure you have shared the drive where the project is cloned in docker Settings -> Shared drives.
 3. Go inside cloned directory `cd saleor-platform`
-4. Fetch the submodules `git submodule update --init --recursive --jobs 3`
+4. Fetch the submodules `git submodule update --init --jobs 3`
 5. Build the application `docker-compose build`
 6. Apply django migrations `docker-compose run --rm web python3 manage.py migrate`
 7. Collect staticfiles `docker-compose run --rm web python3 manage.py collectstatic`
