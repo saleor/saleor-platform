@@ -42,8 +42,8 @@ All Saleor services started from a single repository
 
 
 ## How to update the subprojects into newest versions?
-By default, each of the subprojects is bound to particular commit.
-In order to update all of them to their newest master versions, run `git submodule update --remote`
+By default, this repository contains newest current (stable) versions. When new release appear, pull new version of this repository.
+In order to update all of them to their newest (unstable) master versions, run `git submodule update --remote`
 
 You can find the latest version of Saleor, storefront and dashboard in their individual repositories:
 
