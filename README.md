@@ -1,13 +1,12 @@
 # saleor-platform
-
 All Saleor services started from a single repository
 
 ## Requirements
 1. [Docker](https://docs.docker.com/install/)
 2. [Docker Compose](https://docs.docker.com/compose/install/)
 
-## How to run it?
 
+## How to run it?
 
 ### Mac OS
 1. Clone the repository `git clone git@github.com:mirumee/saleor-platform.git`
@@ -41,6 +40,7 @@ All Saleor services started from a single repository
 8. Populate the DB and create super user `docker-compose run --rm web python3 manage.py populatedb --createsuperuser`
 9. Run the application `docker-compose up`
 
+
 ## How to update the subprojects into newest versions?
 By default, each of the subprojects is bound to particular commit.
 In order to update all of them to their newest master versions, run `git submodule update --remote`
@@ -67,6 +67,7 @@ If you have any questions or feedback, do not hesitate to contact us via Spectru
 
 - https://spectrum.chat/saleor
 - https://gitter.im/mirumee/saleor
+
 
 ## License
 
