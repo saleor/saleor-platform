@@ -9,7 +9,7 @@ All Saleor services started from a single repository
 ## How to run it?
 
 1. Clone the repository `git clone git@github.com:mirumee/saleor-platform.git`
-2. To enable live code reload:
+2. We are using shared folders to enable live code to reload. Without this compose will not start:
     - Windows/Mac: Add the cloned `saleor-platform` directory into docker shared directories (Preferences -> Resources -> File sharing).
     - Linux: Already enabled
 3. Go inside cloned directory `cd saleor-platform`
