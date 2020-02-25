@@ -8,42 +8,59 @@ All Saleor services started from a single repository
 
 ## How to run it?
 
-### Mac OS
-1. Clone the repository `git clone git@github.com:mirumee/saleor-platform.git`
-2. Add the cloned `saleor-platform` directory into docker shared directories (Preferences -> Resources -> File sharing).
-3. Go inside cloned directory `cd saleor-platform`
-4. Fetch the submodules `git submodule update --init --jobs 3`
-5. Build the application `docker-compose build`
-6. Apply django migrations `docker-compose run --rm web python3 manage.py migrate`
-7. Collect staticfiles `docker-compose run --rm web python3 manage.py collectstatic`
-8. Populate the DB and create super user `docker-compose run --rm web python3 manage.py populatedb --createsuperuser`
-9. Run the application `docker-compose up`
+1. Clone the repository:
 
-### Linux
-1. Clone the repository `git clone git@github.com:mirumee/saleor-platform.git`
-2. Go inside cloned directory `cd saleor-platform`
-3. Fetch the submodules `git submodule update --init --jobs 3`
-4. Build the application `docker-compose build`
-5. Apply django migrations `docker-compose run --rm web python3 manage.py migrate`
-6. Collect staticfiles `docker-compose run --rm web python3 manage.py collectstatic`
-7. Populate the DB and create super user `docker-compose run --rm web python3 manage.py populatedb --createsuperuser`
-8. Run the application `docker-compose up`
+```
+$ git clone git@github.com:mirumee/saleor-platform.git
+```
 
-### Windows
-1. Clone the repository `git clone git@github.com:mirumee/saleor-platform.git`
-2. Make sure you have shared the drive where the project is cloned in docker Settings -> Shared drives.
-3. Go inside cloned directory `cd saleor-platform`
-4. Fetch the submodules `git submodule update --init --jobs 3`
-5. Build the application `docker-compose build`
-6. Apply django migrations `docker-compose run --rm web python3 manage.py migrate`
-7. Collect staticfiles `docker-compose run --rm web python3 manage.py collectstatic`
-8. Populate the DB and create super user `docker-compose run --rm web python3 manage.py populatedb --createsuperuser`
-9. Run the application `docker-compose up`
+2. We are using shared folders to enable live code reloading. Without this, Docker Compose will not start:
+    - Windows/MacOS: Add the cloned `saleor-platform` directory to Docker shared directories (Preferences -> Resources -> File sharing).
+    - Windows/MacOS: Make sure that in Docker preferences you have dedicated at least 5 GB of memory (Preferences -> Resources -> Advanced).
+    - Linux: No action required, sharing already enabled and memory for Docker engine is not limited.
+
+3. Go to the cloned directory:
+```
+$ cd saleor-platform
+```
+
+4. Fetch the submodules:
+```
+$ git submodule update --init --jobs 3
+```
+
+5. Build the application:
+```
+$ docker-compose build
+```
+
+6. Apply Django migrations:
+```
+$ docker-compose run --rm web python3 manage.py migrate
+```
+
+7. Collect static files:
+```
+$ docker-compose run --rm web python3 manage.py collectstatic
+```
+
+8. Populate the database with example data and create the admin user:
+```
+$ docker-compose run --rm web python3 manage.py populatedb --createsuperuser
+```
+
+9. Run the application:
+```
+$ docker-compose up
+```
 
 
-## How to update the subprojects into newest versions?
+## How to update the subprojects to the newest versions?
 By default, this repository contains newest current (stable) versions. When new release appear, pull new version of this repository.
-In order to update all of them to their newest (unstable) master versions, run `git submodule update --remote`
+In order to update all of them to their newest (unstable) master versions, run:
+```
+$ git submodule update --remote
+```
 
 You can find the latest version of Saleor, storefront and dashboard in their individual repositories:
 
