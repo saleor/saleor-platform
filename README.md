@@ -41,13 +41,14 @@ $ docker-compose run --rm web python3 manage.py migrate
 
 7. Collect static files:
 ```
-$ docker-compose run --rm web python3 manage.py collectstatic
+$ docker-compose run --rm web python3 manage.py collectstatic --noinput
 ```
 
 8. Populate the database with example data and create the admin user:
 ```
 $ docker-compose run --rm web python3 manage.py populatedb --createsuperuser
 ```
+*Note that `--createsuperuser` argument creates an admin account for `admin@example.com` with the password set to `admin`.*
 
 9. Run the application:
 ```
