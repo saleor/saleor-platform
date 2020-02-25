@@ -78,6 +78,7 @@ You can find the latest version of Saleor, storefront and dashboard in their ind
 - Saleor backend - http://localhost:8000
 - Saleor storefront - http://localhost:3000
 - Saleor dashboard - http://localhost:9000
+- Jaeger UI (OpenTracing) - http://localhost:16686
 
 
 If you have any questions or feedback, do not hesitate to contact us via Spectrum or Gitter:

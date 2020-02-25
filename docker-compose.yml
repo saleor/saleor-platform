@@ -12,10 +12,10 @@ services:
     restart: unless-stopped
     networks:
       - saleor-backend-tier
-    env_file: ./saleor/common.env
     depends_on:
       - db
       - redis
+      - jaeger
     volumes:
       - ./saleor/saleor/:/app/saleor:Z
       - ./saleor/templates/:/app/templates:Z
@@ -26,6 +26,35 @@ services:
       # shared volume between celery and web for media
       - saleor-media:/app/media
     command: python manage.py runserver 0.0.0.0:8000
+    env_file: ./saleor/common.env
+    environment:
+      - JAEGER_AGENT_HOST=jaeger
+
+  storefront:
+    build:
+      context: ./saleor-storefront
+      dockerfile: ./Dockerfile.dev
+    ports:
+      - 3000:3000
+    restart: unless-stopped
+    depends_on:
+      - web
+    volumes:
+      - ./saleor-storefront/src/:/app/src:cached
+    command: npm start -- --host 0.0.0.0
+
+  dashboard:
+    build:
+      context: ./saleor-dashboard
+      dockerfile: ./Dockerfile.dev
+    ports:
+      - 9000:9000
+    restart: unless-stopped
+    depends_on:
+      - web
+    volumes:
+      - ./saleor-dashboard/src/:/app/src:cached
+    command: npm start -- --host 0.0.0.0
 
   db:
     image: library/postgres:11.1-alpine
@@ -71,31 +100,19 @@ services:
       # shared volume between celery and web for media
       - saleor-media:/app/media
 
-  storefront:
-    build:
-      context: ./saleor-storefront
-      dockerfile: ./Dockerfile.dev
+  jaeger:
+    image: jaegertracing/all-in-one
     ports:
-      - 3000:3000
+      - "5775:5775/udp"
+      - "6831:6831/udp"
+      - "6832:6832/udp"
+      - "5778:5778"
+      - "16686:16686"
+      - "14268:14268"
+      - "9411:9411"
     restart: unless-stopped
-    depends_on:
-      - web
-    volumes:
-      - ./saleor-storefront/src/:/app/src:cached
-    command: npm start -- --host 0.0.0.0
-
-  dashboard:
-    build:
-      context: ./saleor-dashboard
-      dockerfile: ./Dockerfile.dev
-    ports:
-      - 9000:9000
-    restart: unless-stopped
-    depends_on:
-      - web
-    volumes:
-      - ./saleor-dashboard/src/:/app/src:cached
-    command: npm start -- --host 0.0.0.0
+    networks:
+      - saleor-backend-tier
 
 volumes:
   saleor-db:
