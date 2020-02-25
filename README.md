@@ -56,8 +56,8 @@ $ docker-compose up
 
 
 ## How to update the subprojects to the newest versions?
-By default, each of the subprojects is bound to a particular commit.
-To update all of them to their newest master versions, run:
+By default, this repository contains newest current (stable) versions. When new release appear, pull new version of this repository.
+In order to update all of them to their newest (unstable) master versions, run:
 ```
 $ git submodule update --remote
 ```
