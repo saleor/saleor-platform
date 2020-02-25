@@ -16,7 +16,8 @@ $ git clone git@github.com:mirumee/saleor-platform.git
 
 2. We are using shared folders to enable live code reloading. Without this, Docker Compose will not start:
     - Windows/MacOS: Add the cloned `saleor-platform` directory to Docker shared directories (Preferences -> Resources -> File sharing).
-    - Linux: Already enabled
+    - Windows/MacOS: Make sure that in Docker preferences you have dedicated at least 5 GB of memory (Preferences -> Resources -> Advanced).
+    - Linux: No action required, sharing already enabled and memory for Docker engine is not limited.
 
 3. Go to the cloned directory:
 ```
