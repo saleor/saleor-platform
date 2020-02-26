@@ -37,8 +37,6 @@ services:
     ports:
       - 3000:3000
     restart: unless-stopped
-    depends_on:
-      - web
     volumes:
       - ./saleor-storefront/src/:/app/src:cached
     command: npm start -- --host 0.0.0.0
@@ -50,8 +48,6 @@ services:
     ports:
       - 9000:9000
     restart: unless-stopped
-    depends_on:
-      - web
     volumes:
       - ./saleor-dashboard/src/:/app/src:cached
     command: npm start -- --host 0.0.0.0
