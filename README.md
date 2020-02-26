@@ -11,7 +11,7 @@ All Saleor services started from a single repository
 1. Clone the repository:
 
 ```
-$ git clone git@github.com:mirumee/saleor-platform.git
+$ git clone git@github.com:mirumee/saleor-platform.git --recursive --jobs 3
 ```
 
 2. We are using shared folders to enable live code reloading. Without this, Docker Compose will not start:
@@ -24,33 +24,28 @@ $ git clone git@github.com:mirumee/saleor-platform.git
 $ cd saleor-platform
 ```
 
-4. Fetch the submodules:
-```
-$ git submodule update --init --jobs 3
-```
-
-5. Build the application:
+4. Build the application:
 ```
 $ docker-compose build
 ```
 
-6. Apply Django migrations:
+5. Apply Django migrations:
 ```
 $ docker-compose run --rm web python3 manage.py migrate
 ```
 
-7. Collect static files:
+6. Collect static files:
 ```
 $ docker-compose run --rm web python3 manage.py collectstatic --noinput
 ```
 
-8. Populate the database with example data and create the admin user:
+7. Populate the database with example data and create the admin user:
 ```
 $ docker-compose run --rm web python3 manage.py populatedb --createsuperuser
 ```
 *Note that `--createsuperuser` argument creates an admin account for `admin@example.com` with the password set to `admin`.*
 
-9. Run the application:
+8. Run the application:
 ```
 $ docker-compose up
 ```
