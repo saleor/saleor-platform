@@ -51,6 +51,7 @@ $ docker-compose run --rm web python3 manage.py populatedb --createsuperuser
 ```
 $ docker-compose up
 ```
+*Both storefront and dashboard are quite big frontend projects and it might take up to few minutes for them to compile depending on your CPU. If nothing shows up on port 3000 or 9000 wait until `Compiled successfully` shows in the console output.*
 
 
 ## How to update the subprojects to the newest versions?
