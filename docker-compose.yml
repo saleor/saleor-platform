@@ -38,7 +38,8 @@ services:
       - 3000:3000
     restart: unless-stopped
     volumes:
-      - ./saleor-storefront/src/:/app/src:cached
+      - ./saleor-storefront/:/app:cached
+      - /app/node_modules/
     command: npm start -- --host 0.0.0.0
 
   dashboard:
@@ -49,7 +50,8 @@ services:
       - 9000:9000
     restart: unless-stopped
     volumes:
-      - ./saleor-dashboard/src/:/app/src:cached
+      - ./saleor-dashboard/:/app:cached
+      - /app/node_modules/
     command: npm start -- --host 0.0.0.0
 
   db:
