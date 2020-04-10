@@ -23,7 +23,7 @@ services:
       # prevents overshadowing of build-time assets
       - /app/saleor/static/assets
       - /app/templates/templated_email/compiled
-      # shared volume between celery and api for media
+      # shared volume between worker and api for media
       - saleor-media:/app/media
     command: python manage.py runserver 0.0.0.0:8000
     env_file: ./saleor/common.env
@@ -77,7 +77,7 @@ services:
     volumes:
       - saleor-redis:/data
 
-  celery:
+  worker:
     build:
       context: ./saleor
       dockerfile: ./Dockerfile
@@ -95,7 +95,7 @@ services:
       - ./saleor/templates/:/app/templates:Z,cached
       # prevents overshadowing of build-time assets
       - /app/templates/templated_email/compiled
-      # shared volume between celery and api for media
+      # shared volume between worker and api for media
       - saleor-media:/app/media
 
   jaeger:
