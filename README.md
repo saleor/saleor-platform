@@ -33,17 +33,17 @@ $ docker-compose build
 
 5. Apply Django migrations:
 ```
-$ docker-compose run --rm web python3 manage.py migrate
+$ docker-compose run --rm api python3 manage.py migrate
 ```
 
 6. Collect static files:
 ```
-$ docker-compose run --rm web python3 manage.py collectstatic --noinput
+$ docker-compose run --rm api python3 manage.py collectstatic --noinput
 ```
 
 7. Populate the database with example data and create the admin user:
 ```
-$ docker-compose run --rm web python3 manage.py populatedb --createsuperuser
+$ docker-compose run --rm api python3 manage.py populatedb --createsuperuser
 ```
 *Note that `--createsuperuser` argument creates an admin account for `admin@example.com` with the password set to `admin`.*
 
@@ -70,15 +70,15 @@ You can find the latest version of Saleor, storefront and dashboard in their ind
 
 
 ## How to run application parts?
-  - `docker-compose up web celery` for backend services only
+  - `docker-compose up api worker` for backend services only
   - `docker-compose up` for backend and frontend services
 
 
 ## Where is the application running?
-- Saleor backend - http://localhost:8000
-- Saleor storefront - http://localhost:3000
-- Saleor dashboard - http://localhost:9000
-- Jaeger UI (OpenTracing) - http://localhost:16686
+- Saleor Core (API) - http://localhost:8000
+- Saleor Storefront - http://localhost:3000
+- Saleor Dashboard - http://localhost:9000
+- Jaeger UI (APM) - http://localhost:16686
 
 
 If you have any questions or feedback, do not hesitate to contact us via Spectrum or Gitter:
