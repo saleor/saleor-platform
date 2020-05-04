@@ -55,7 +55,7 @@ $ docker-compose up
 
 
 ## How to update the subprojects to the newest versions?
-This repository will contain newest stable versions. For now it contains unstable ones - with changes made after 2.9 due to some technical requirements that allows platform to work.
+This repository contains newest stable versions.
 When new release appear, pull new version of this repository.
 In order to update all of them to their newest (unstable) master versions, run:
 ```
