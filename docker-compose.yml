@@ -1,7 +1,7 @@
 version: '2'
 
 services:
-  web:
+  api:
     ports:
       - 8000:8000
     build:
@@ -23,12 +23,14 @@ services:
       # prevents overshadowing of build-time assets
       - /app/saleor/static/assets
       - /app/templates/templated_email/compiled
-      # shared volume between celery and web for media
+      # shared volume between worker and api for media
       - saleor-media:/app/media
     command: python manage.py runserver 0.0.0.0:8000
     env_file: ./saleor/common.env
     environment:
       - JAEGER_AGENT_HOST=jaeger
+      - STOREFRONT_URL=http://localhost:3000/
+      - DASHBOARD_URL=http://localhost:9000/
 
   storefront:
     build:
@@ -77,7 +79,7 @@ services:
     volumes:
       - saleor-redis:/data
 
-  celery:
+  worker:
     build:
       context: ./saleor
       dockerfile: ./Dockerfile
@@ -95,7 +97,7 @@ services:
       - ./saleor/templates/:/app/templates:Z,cached
       # prevents overshadowing of build-time assets
       - /app/templates/templated_email/compiled
-      # shared volume between celery and web for media
+      # shared volume between worker and api for media
       - saleor-media:/app/media
 
   jaeger:
