@@ -68,6 +68,60 @@ You can find the latest version of Saleor, storefront and dashboard in their ind
 - https://github.com/mirumee/saleor-dashboard
 - https://github.com/mirumee/saleor-storefront
 
+## How to solve issues with lack of available space or build errors after update
+
+Most of the time both issues can be solved by cleaning up space taken by old containers. After that, we build again whole platform. 
+
+
+1. Make sure docker stack is not running
+```
+$ docker-compose stop
+```
+
+2. Remove existing volumes
+
+**Warning!** Proceeding will remove also your database container! If you need existing data, please remove only services which cause problems! https://docs.docker.com/compose/reference/rm/
+```
+docker-compose rm
+```
+
+4. Build fresh containers 
+```
+docker-compose build
+```
+
+5. Now you can run fresh environment using commands from `How to run it?` section. Done!
+
+### One-line solution
+If you are looking for oneliner to teardown and rebuild whole app, you can use following instruction. **It will run all the commands without asking for permission (--force flag)**.
+
+<details><summary>I've been warned</summary>
+<p>
+
+```
+$ docker-compose stop && docker-compose rm -f && docker-compose build && docker-compose run --rm api python3 manage.py migrate && docker-compose run --rm api python3 manage.py collectstatic --noinput && docker-compose run --rm api python3 manage.py populatedb --createsuperuser
+```
+
+</p>
+</details>
+
+### Still no available space
+
+If you are getting issues with lack of available space, consider prunning your docker cache:
+
+**Warning!** To get more info whats will be deleted, go to: https://docs.docker.com/engine/reference/commandline/system_prune/
+
+
+
+<details><summary>I've been warned</summary>
+<p>
+
+```
+$ docker system prune
+```
+
+</p>
+</details>
 
 ## How to run application parts?
   - `docker-compose up api worker` for backend services only
