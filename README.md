@@ -111,8 +111,6 @@ If you are getting issues with lack of available space, consider prunning your d
 
 **Warning!** To get more info whats will be deleted, go to: https://docs.docker.com/engine/reference/commandline/system_prune/
 
-
-
 <details><summary>I've been warned</summary>
 <p>
 
