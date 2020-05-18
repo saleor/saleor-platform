@@ -85,12 +85,12 @@ $ docker-compose stop
 docker-compose rm
 ```
 
-4. Build fresh containers 
+3. Build fresh containers 
 ```
 docker-compose build
 ```
 
-5. Now you can run fresh environment using commands from `How to run it?` section. Done!
+4. Now you can run fresh environment using commands from `How to run it?` section. Done!
 
 ### Still no available space
 
