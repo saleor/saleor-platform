@@ -26,7 +26,7 @@ services:
       # shared volume between worker and api for media
       - saleor-media:/app/media
     command: python manage.py runserver 0.0.0.0:8000
-    env_file: ./saleor/common.env
+    env_file: common.env
     environment:
       - JAEGER_AGENT_HOST=jaeger
       - STOREFRONT_URL=http://localhost:3000/
@@ -89,7 +89,7 @@ services:
     restart: unless-stopped
     networks:
       - saleor-backend-tier
-    env_file: ./saleor/common.env
+    env_file: common.env
     depends_on:
       - redis
     volumes:
