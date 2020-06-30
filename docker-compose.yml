@@ -20,9 +20,6 @@ services:
       - ./saleor/saleor/:/app/saleor:Z
       - ./saleor/templates/:/app/templates:Z
       - ./saleor/tests/:/app/tests
-      # prevents overshadowing of build-time assets
-      - /app/saleor/static/assets
-      - /app/templates/templated_email/compiled
       # shared volume between worker and api for media
       - saleor-media:/app/media
     command: python manage.py runserver 0.0.0.0:8000
@@ -95,8 +92,6 @@ services:
     volumes:
       - ./saleor/saleor/:/app/saleor:Z,cached
       - ./saleor/templates/:/app/templates:Z,cached
-      # prevents overshadowing of build-time assets
-      - /app/templates/templated_email/compiled
       # shared volume between worker and api for media
       - saleor-media:/app/media
 
