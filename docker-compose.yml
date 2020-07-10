@@ -89,11 +89,14 @@ services:
     env_file: common.env
     depends_on:
       - redis
+      - mailhog
     volumes:
       - ./saleor/saleor/:/app/saleor:Z,cached
       - ./saleor/templates/:/app/templates:Z,cached
       # shared volume between worker and api for media
       - saleor-media:/app/media
+    environment:
+      - EMAIL_URL=smtp://mailhog:1025
 
   jaeger:
     image: jaegertracing/all-in-one
@@ -105,6 +108,15 @@ services:
       - "16686:16686"
       - "14268:14268"
       - "9411:9411"
+    restart: unless-stopped
+    networks:
+      - saleor-backend-tier
+
+  mailhog:
+    image: mailhog/mailhog
+    ports: 
+      - 1025:1025 # smtp server
+      - 8025:8025 # web ui. Visit http://localhost:8025/ to check emails
     restart: unless-stopped
     networks:
       - saleor-backend-tier
