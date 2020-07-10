@@ -1,12 +1,13 @@
 # saleor-platform
+
 All Saleor services started from a single repository
 
-*Keep in mind this repository is for local development only and is not meant to be deployed on any production environment! If you're not a developer and just want to try out Saleor you can check our [live demo](https://demo.saleor.io/).*
+_Keep in mind this repository is for local development only and is not meant to be deployed on any production environment! If you're not a developer and just want to try out Saleor you can check our [live demo](https://demo.saleor.io/)._
 
 ## Requirements
+
 1. [Docker](https://docs.docker.com/install/)
 2. [Docker Compose](https://docs.docker.com/compose/install/)
-
 
 ## How to run it?
 
@@ -16,48 +17,72 @@ All Saleor services started from a single repository
 $ git clone git@github.com:mirumee/saleor-platform.git --recursive --jobs 3
 ```
 
-2. We are using shared folders to enable live code reloading. Without this, Docker Compose will not start:
-    - Windows/MacOS: Add the cloned `saleor-platform` directory to Docker shared directories (Preferences -> Resources -> File sharing).
-    - Windows/MacOS: Make sure that in Docker preferences you have dedicated at least 5 GB of memory (Preferences -> Resources -> Advanced).
-    - Linux: No action required, sharing already enabled and memory for Docker engine is not limited.
+2. Go to the cloned directory:
 
-3. Go to the cloned directory:
 ```
 $ cd saleor-platform
 ```
 
-4. Build the application:
+3. Clone repositories:
+
+```
+$ git clone https://github.com/mirumee/saleor.git
+```
+
+```
+$ git clone https://github.com/mirumee/saleor-dashboard.git
+```
+
+```
+$ git clone https://github.com/mirumee/saleor-storefront.git
+```
+
+4. We are using shared folders to enable live code reloading. Without this, Docker Compose will not start:
+
+   - Windows/MacOS: Add the cloned `saleor-platform` directory to Docker shared directories (Preferences -> Resources -> File sharing).
+   - Windows/MacOS: Make sure that in Docker preferences you have dedicated at least 5 GB of memory (Preferences -> Resources -> Advanced).
+   - Linux: No action required, sharing already enabled and memory for Docker engine is not limited.
+
+5. Build the application:
+
 ```
 $ docker-compose build
 ```
 
-5. Apply Django migrations:
+6. Apply Django migrations:
+
 ```
 $ docker-compose run --rm api python3 manage.py migrate
 ```
 
-6. Collect static files:
+7. Collect static files:
+
 ```
 $ docker-compose run --rm api python3 manage.py collectstatic --noinput
 ```
 
-7. Populate the database with example data and create the admin user:
+8. Populate the database with example data and create the admin user:
+
 ```
 $ docker-compose run --rm api python3 manage.py populatedb --createsuperuser
 ```
-*Note that `--createsuperuser` argument creates an admin account for `admin@example.com` with the password set to `admin`.*
 
-8. Run the application:
+_Note that `--createsuperuser` argument creates an admin account for `admin@example.com` with the password set to `admin`._
+
+9. Run the application:
+
 ```
 $ docker-compose up
 ```
-*Both storefront and dashboard are quite big frontend projects and it might take up to few minutes for them to compile depending on your CPU. If nothing shows up on port 3000 or 9000 wait until `Compiled successfully` shows in the console output.*
 
+_Both storefront and dashboard are quite big frontend projects and it might take up to few minutes for them to compile depending on your CPU. If nothing shows up on port 3000 or 9000 wait until `Compiled successfully` shows in the console output._
 
 ## How to update the subprojects to the newest versions?
+
 This repository contains newest stable versions.
 When new release appear, pull new version of this repository.
 In order to update all of them to their newest versions, run:
+
 ```
 $ git submodule update --remote
 ```
@@ -70,10 +95,10 @@ You can find the latest version of Saleor, storefront and dashboard in their ind
 
 ## How to solve issues with lack of available space or build errors after update
 
-Most of the time both issues can be solved by cleaning up space taken by old containers. After that, we build again whole platform. 
-
+Most of the time both issues can be solved by cleaning up space taken by old containers. After that, we build again whole platform.
 
 1. Make sure docker stack is not running
+
 ```
 $ docker-compose stop
 ```
@@ -81,11 +106,13 @@ $ docker-compose stop
 2. Remove existing volumes
 
 **Warning!** Proceeding will remove also your database container! If you need existing data, please remove only services which cause problems! https://docs.docker.com/compose/reference/rm/
+
 ```
 docker-compose rm
 ```
 
-3. Build fresh containers 
+3. Build fresh containers
+
 ```
 docker-compose build
 ```
@@ -97,13 +124,14 @@ docker-compose build
 If you are getting issues with lack of available space, consider prunning your docker cache:
 
 **Warning!** This will remove:
-  - all stopped containers
-  - all networks not used by at least one container
-  - all dangling images
-  - all dangling build cache 
-  
-  More info: https://docs.docker.com/engine/reference/commandline/system_prune/
-  
+
+- all stopped containers
+- all networks not used by at least one container
+- all dangling images
+- all dangling build cache
+
+More info: https://docs.docker.com/engine/reference/commandline/system_prune/
+
 <details><summary>I've been warned</summary>
 <p>
 
@@ -115,22 +143,21 @@ $ docker system prune
 </details>
 
 ## How to run application parts?
-  - `docker-compose up api worker` for backend services only
-  - `docker-compose up` for backend and frontend services
 
+- `docker-compose up api worker` for backend services only
+- `docker-compose up` for backend and frontend services
 
 ## Where is the application running?
+
 - Saleor Core (API) - http://localhost:8000
 - Saleor Storefront - http://localhost:3000
 - Saleor Dashboard - http://localhost:9000
 - Jaeger UI (APM) - http://localhost:16686
 
-
 If you have any questions or feedback, do not hesitate to contact us via Spectrum or Gitter:
 
 - https://spectrum.chat/saleor
 - https://gitter.im/mirumee/saleor
-
 
 ## License
 
