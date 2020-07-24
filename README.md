@@ -13,7 +13,7 @@ All Saleor services started from a single repository
 1. Clone the repository:
 
 ```
-$ git clone git@github.com:mirumee/saleor-platform.git --recursive --jobs 3
+$ git clone https://github.com/mirumee/saleor-platform.git --recursive --jobs 3
 ```
 
 2. We are using shared folders to enable live code reloading. Without this, Docker Compose will not start:
