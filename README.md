@@ -124,6 +124,7 @@ $ docker system prune
 - Saleor Storefront - http://localhost:3000
 - Saleor Dashboard - http://localhost:9000
 - Jaeger UI (APM) - http://localhost:16686
+- Mailhog (Test email interface) - http://localhost:8025 
 
 
 If you have any questions or feedback, do not hesitate to contact us via Spectrum or Gitter:
