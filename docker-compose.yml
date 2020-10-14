@@ -25,7 +25,7 @@ services:
     command: python manage.py runserver 0.0.0.0:8000
     env_file:
       - common.env
-      - api.env
+      - backend.env
     environment:
       - JAEGER_AGENT_HOST=jaeger
       - STOREFRONT_URL=http://localhost:3000/
@@ -55,7 +55,6 @@ services:
       - ./saleor-dashboard/:/app:cached
       - /app/node_modules/
     command: npm start -- --host 0.0.0.0
-    env_file: common.env
 
   db:
     image: library/postgres:11.1-alpine
@@ -90,7 +89,7 @@ services:
     restart: unless-stopped
     networks:
       - saleor-backend-tier
-    env_file: common.env
+    env_file: backend.env
     depends_on:
       - redis
       - mailhog
