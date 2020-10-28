@@ -21,6 +21,8 @@ $ git clone https://github.com/mirumee/saleor-platform.git --recursive --jobs 3
     - Windows/MacOS: Make sure that in Docker preferences you have dedicated at least 5 GB of memory (Preferences -> Resources -> Advanced).
     - Linux: No action required, sharing already enabled and memory for Docker engine is not limited.
 
+*Note: The latest version of Docker on Windows does not allow to change dedicated amount of memory.*
+
 3. Go to the cloned directory:
 ```
 $ cd saleor-platform
@@ -53,6 +55,7 @@ $ docker-compose up
 ```
 *Both storefront and dashboard are quite big frontend projects and it might take up to few minutes for them to compile depending on your CPU. If nothing shows up on port 3000 or 9000 wait until `Compiled successfully` shows in the console output.*
 
+*If you experience a timeout error, increase timeout variables of Docker to 5 minutes.*
 
 ## How to update the subprojects to the newest versions?
 This repository contains newest stable versions.
