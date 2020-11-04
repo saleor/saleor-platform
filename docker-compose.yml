@@ -82,7 +82,7 @@ services:
       dockerfile: ./Dockerfile
       args:
         STATIC_URL: '/static/'
-    command: celery -A saleor worker --app=saleor.celeryconf:app --loglevel=info
+    command: celery -A saleor --app=saleor.celeryconf:app worker --loglevel=info
     restart: unless-stopped
     networks:
       - saleor-backend-tier
