@@ -1,0 +1,1 @@
+{"version":3,"file":"queries.js","sourceRoot":"","sources":["../../src/react/queries.ts"],"names":[],"mappings":";;;AAAA,yCAAqE;AAExD,QAAA,cAAc,GAAG,uBAAY,CAAC,gBAAgB,CAAC,CAAC;AAEhD,QAAA,eAAe,GAAG,oCAAyB,CAAC,iBAAiB,CAAC,CAAC;AAC/D,QAAA,eAAe,GAAG,oCAAyB,CAAC,iBAAiB,CAAC,CAAC;AAE/D,QAAA,aAAa,GAAG,oCAAyB,CAAC,eAAe,CAAC,CAAC;AAE3D,QAAA,mBAAmB,GAAG,oCAAyB,CAC1D,qBAAqB,CACtB,CAAC"}
