@@ -13,7 +13,11 @@ All Saleor services started from a single repository
 1. Clone the repository:
 
 ```
-$ git clone https://github.com/mirumee/saleor-platform.git --recursive --jobs 3
+$ git clone https://github.com/kaocher82/saleor-platform.git --recursive --jobs 3
+
+or 
+
+git clone git@github.com:kaocher82/saleor-platform.git
 ```
 
 2. We are using shared folders to enable live code reloading. Without this, Docker Compose will not start:
@@ -28,28 +32,28 @@ $ cd saleor-platform
 
 4. Build the application:
 ```
-$ docker-compose build
+$ sudo docker-compose build
 ```
 
 5. Apply Django migrations:
 ```
-$ docker-compose run --rm api python3 manage.py migrate
+$ sudo docker-compose run --rm api python3 manage.py migrate
 ```
 
 6. Collect static files:
 ```
-$ docker-compose run --rm api python3 manage.py collectstatic --noinput
+$ sudo docker-compose run --rm api python3 manage.py collectstatic --noinput
 ```
 
 7. Populate the database with example data and create the admin user:
 ```
-$ docker-compose run --rm api python3 manage.py populatedb --createsuperuser
+$ sudo docker-compose run --rm api python3 manage.py populatedb --createsuperuser
 ```
 *Note that `--createsuperuser` argument creates an admin account for `admin@example.com` with the password set to `admin`.*
 
 8. Run the application:
 ```
-$ docker-compose up
+$ sudo docker-compose up
 ```
 *Both storefront and dashboard are quite big frontend projects and it might take up to few minutes for them to compile depending on your CPU. If nothing shows up on port 3000 or 9000 wait until `Compiled successfully` shows in the console output.*
 
