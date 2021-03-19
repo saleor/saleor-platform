@@ -3,7 +3,7 @@ version: '2'
 services:
   api:
     ports:
-      - 8000:8000
+      - 9100:8000
     build:
       context: ./saleor
       dockerfile: ./Dockerfile
@@ -26,15 +26,17 @@ services:
     env_file: common.env
     environment:
       - JAEGER_AGENT_HOST=jaeger
-      - STOREFRONT_URL=http://localhost:3000/
-      - DASHBOARD_URL=http://localhost:9000/
+      - STOREFRONT_URL=http://116.203.46.41:9101/
+      - DASHBOARD_URL=http://116.203.46.41:9102/
 
   storefront:
     build:
       context: ./saleor-storefront
       dockerfile: ./Dockerfile.dev
+      args:
+        API_URI : 'http://116.203.46.41:9101/graphql/'
     ports:
-      - 3000:3000
+      - 9101:3000
     restart: unless-stopped
     volumes:
       - ./saleor-storefront/:/app:cached
@@ -45,8 +47,10 @@ services:
     build:
       context: ./saleor-dashboard
       dockerfile: ./Dockerfile.dev
+      args:
+        API_URI : 'http://116.203.46.41:9101/graphql/'
     ports:
-      - 9000:9000
+      - 9102:9000
     restart: unless-stopped
     volumes:
       - ./saleor-dashboard/:/app:cached
@@ -56,7 +60,7 @@ services:
   db:
     image: library/postgres:11.1-alpine
     ports:
-      - 5432:5432
+      - 9103:5432
     restart: unless-stopped
     networks:
       - saleor-backend-tier
@@ -69,7 +73,7 @@ services:
   redis:
     image: library/redis:5.0-alpine
     ports:
-      - 6379:6379
+      - 9104:6379
     restart: unless-stopped
     networks:
       - saleor-backend-tier
