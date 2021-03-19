@@ -34,7 +34,7 @@ services:
       context: ./saleor-storefront
       dockerfile: ./Dockerfile.dev
       args:
-        API_URI : 'http://116.203.46.41:9101/graphql/'
+        API_URI : 'http://116.203.46.41:9100/graphql/'
     ports:
       - 9101:3000
     restart: unless-stopped
@@ -48,7 +48,7 @@ services:
       context: ./saleor-dashboard
       dockerfile: ./Dockerfile.dev
       args:
-        API_URI : 'http://116.203.46.41:9101/graphql/'
+        API_URI : 'http://116.203.46.41:9100/graphql/'
     ports:
       - 9102:9000
     restart: unless-stopped
