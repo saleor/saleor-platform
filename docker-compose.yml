@@ -35,7 +35,7 @@ services:
       dockerfile: ./Dockerfile.dev
       args:
         API_URI : 'http://116.203.46.41:9100/graphql/'
-        NEXT_PUBLIC_API_URI: "http://116.203.46.41:9100/graphql/"
+        NEXT_PUBLIC_API_URI: 'http://116.203.46.41:9100/graphql/'
     ports:
       - 9101:3000
     restart: unless-stopped
