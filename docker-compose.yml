@@ -1,4 +1,4 @@
-version: '2'
+version: "2"
 
 services:
   api:
@@ -8,7 +8,7 @@ services:
       context: ./saleor
       dockerfile: ./Dockerfile
       args:
-        STATIC_URL: '/static/'
+        STATIC_URL: "/static/"
     restart: unless-stopped
     networks:
       - saleor-backend-tier
@@ -39,7 +39,7 @@ services:
     volumes:
       - ./saleor-storefront/:/app:cached
       - /app/node_modules/
-    command: npm start -- --host 0.0.0.0
+    command: npm start -- --hostname 0.0.0.0
 
   dashboard:
     build:
@@ -81,7 +81,7 @@ services:
       context: ./saleor
       dockerfile: ./Dockerfile
       args:
-        STATIC_URL: '/static/'
+        STATIC_URL: "/static/"
     command: celery -A saleor --app=saleor.celeryconf:app worker --loglevel=info
     restart: unless-stopped
     networks:
@@ -112,7 +112,7 @@ services:
 
   mailhog:
     image: mailhog/mailhog
-    ports: 
+    ports:
       - 1025:1025 # smtp server
       - 8025:8025 # web ui. Visit http://localhost:8025/ to check emails
     restart: unless-stopped
