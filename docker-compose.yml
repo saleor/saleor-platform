@@ -95,8 +95,6 @@ services:
       - ./saleor/templates/:/app/templates:Z,cached
       # shared volume between worker and api for media
       - saleor-media:/app/media
-    environment:
-      - EMAIL_URL=smtp://mailhog:1025
 
   jaeger:
     image: jaegertracing/all-in-one
