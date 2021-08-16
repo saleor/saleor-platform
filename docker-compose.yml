@@ -14,8 +14,8 @@ services:
       - saleor-backend-tier
     depends_on:
       - db
-      - redis
-      - jaeger
+    #  - redis
+    #  - jaeger
     volumes:
       - ./saleor/saleor/:/app/saleor:Z
       - ./saleor/templates/:/app/templates:Z
@@ -25,7 +25,7 @@ services:
     command: python manage.py runserver 0.0.0.0:8000
     env_file: common.env
     environment:
-      - JAEGER_AGENT_HOST=jaeger
+    #  - JAEGER_AGENT_HOST=jaeger
       - STOREFRONT_URL=http://localhost:3000/
       - DASHBOARD_URL=http://localhost:9000/
 
@@ -66,15 +66,15 @@ services:
       - POSTGRES_USER=saleor
       - POSTGRES_PASSWORD=saleor
 
-  redis:
-    image: library/redis:5.0-alpine
-    ports:
-      - 6379:6379
-    restart: unless-stopped
-    networks:
-      - saleor-backend-tier
-    volumes:
-      - saleor-redis:/data
+  #redis:
+  #  image: library/redis:5.0-alpine
+  #  ports:
+  #    - 6379:6379
+  #  restart: unless-stopped
+  #  networks:
+  #    - saleor-backend-tier
+  #  volumes:
+  #    - saleor-redis:/data
 
   worker:
     build:
@@ -96,28 +96,28 @@ services:
       # shared volume between worker and api for media
       - saleor-media:/app/media
 
-  jaeger:
-    image: jaegertracing/all-in-one
-    ports:
-      - "5775:5775/udp"
-      - "6831:6831/udp"
-      - "6832:6832/udp"
-      - "5778:5778"
-      - "16686:16686"
-      - "14268:14268"
-      - "9411:9411"
-    restart: unless-stopped
-    networks:
-      - saleor-backend-tier
+  #jaeger:
+  #  image: jaegertracing/all-in-one
+  #  ports:
+  #    - "5775:5775/udp"
+  #    - "6831:6831/udp"
+  #    - "6832:6832/udp"
+  #    - "5778:5778"
+  #    - "16686:16686"
+  #    - "14268:14268"
+  #    - "9411:9411"
+  #  restart: unless-stopped
+  #  networks:
+  #    - saleor-backend-tier
 
-  mailhog:
-    image: mailhog/mailhog
-    ports:
-      - 1025:1025 # smtp server
-      - 8025:8025 # web ui. Visit http://localhost:8025/ to check emails
-    restart: unless-stopped
-    networks:
-      - saleor-backend-tier
+  #mailhog:
+  #  image: mailhog/mailhog
+  #  ports:
+  #    - 1025:1025 # smtp server
+  #    - 8025:8025 # web ui. Visit http://localhost:8025/ to check emails
+  #  restart: unless-stopped
+  #  networks:
+  #    - saleor-backend-tier
 
 volumes:
   saleor-db:
