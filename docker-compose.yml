@@ -39,7 +39,7 @@ services:
     volumes:
       - ./saleor-storefront/:/app:cached
       - /app/node_modules/
-    command: npm start -- --hostname 0.0.0.0
+    command: npm start -- --host 0.0.0.0
 
   dashboard:
     build:
