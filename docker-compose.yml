@@ -34,7 +34,8 @@ services:
       context: ./saleor-storefront
       dockerfile: ./Dockerfile.dev
     restart: unless-stopped
-    network_mode: "host"
+    ports:
+      - 3000:3000
     volumes:
       - ./saleor-storefront/:/app:cached
       - /app/node_modules/
