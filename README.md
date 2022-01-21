@@ -13,7 +13,7 @@ All Saleor services started from a single repository
 1. Clone the repository:
 
 ```
-$ git clone https://github.com/mirumee/saleor-platform.git --recursive --jobs 3
+$ git clone https://github.com/saleor/saleor-platform.git --recursive --jobs 3
 ```
 
 2. We are using shared folders to enable live code reloading. Without this, Docker Compose will not start:
@@ -64,9 +64,9 @@ $ git submodule update --remote
 
 You can find the latest version of Saleor, storefront and dashboard in their individual repositories:
 
-- https://github.com/mirumee/saleor
-- https://github.com/mirumee/saleor-dashboard
-- https://github.com/mirumee/saleor-storefront
+- https://github.com/saleor/saleor
+- https://github.com/saleor/saleor-dashboard
+- https://github.com/saleor/saleor-storefront
 
 ## How to solve issues with lack of available space or build errors after update
 
@@ -127,9 +127,9 @@ $ docker system prune
 - Mailhog (Test email interface) - http://localhost:8025 
 
 
-If you have any questions or feedback, do not hesitate to contact us via Spectrum or Gitter:
+If you have any questions or feedback, do not hesitate to contact us via GitHub or Gitter:
 
-- https://spectrum.chat/saleor
+- https://github.com/saleor/saleor/discussions
 - https://gitter.im/mirumee/saleor
 
 
