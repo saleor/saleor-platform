@@ -127,9 +127,9 @@ $ docker system prune
 - Mailhog (Test email interface) - http://localhost:8025 
 
 
-If you have any questions or feedback, do not hesitate to contact us via Spectrum or Gitter:
+If you have any questions or feedback, do not hesitate to contact us on GitHub discussions or Gitter:
 
-- https://spectrum.chat/saleor
+- https://github.com/saleor/saleor/discussions
 - https://gitter.im/mirumee/saleor
 
 
