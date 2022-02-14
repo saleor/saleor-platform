@@ -1,4 +1,4 @@
-version: "2"
+version: "3.4"
 
 services:
   api:
@@ -30,6 +30,7 @@ services:
       - JAEGER_AGENT_HOST=jaeger
       - STOREFRONT_URL=http://localhost:3000/
       - DASHBOARD_URL=http://localhost:9000/
+      - ALLOWED_HOSTS=localhost,api
 
   storefront:
     build:
@@ -38,11 +39,15 @@ services:
     ports:
       - 3000:3000
     restart: unless-stopped
+    networks:
+      - saleor-backend-tier
+    depends_on:
+      - api
     volumes:
       - ./saleor-storefront/:/app:cached
       - /app/node_modules/
-    command: npm start -- --host 0.0.0.0
-    env_file: common.env
+    # Nginx is used to proxy SSR requests thru docker networking
+    command: sh -c '(nginx &) && npm run start'
 
   dashboard:
     build:
