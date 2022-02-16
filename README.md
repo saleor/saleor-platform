@@ -13,7 +13,7 @@ All Saleor services started from a single repository
 1. Clone the repository:
 
 ```
-$ git clone https://github.com/mirumee/saleor-platform.git --recursive --jobs 3
+$ git clone https://github.com/saleor/saleor-platform.git --recursive --jobs 3
 ```
 
 2. We are using shared folders to enable live code reloading. Without this, Docker Compose will not start:
@@ -64,9 +64,9 @@ $ git submodule update --remote
 
 You can find the latest version of Saleor, storefront and dashboard in their individual repositories:
 
-- https://github.com/mirumee/saleor
-- https://github.com/mirumee/saleor-dashboard
-- https://github.com/mirumee/saleor-storefront
+- https://github.com/saleor/saleor
+- https://github.com/saleor/saleor-dashboard
+- https://github.com/saleor/saleor-storefront
 
 ## How to solve issues with lack of available space or build errors after update
 
@@ -127,7 +127,7 @@ $ docker system prune
 - Mailhog (Test email interface) - http://localhost:8025 
 
 
-If you have any questions or feedback, do not hesitate to contact us on GitHub discussions or Gitter:
+If you have any questions or feedback, do not hesitate to contact us via GitHub or Gitter:
 
 - https://github.com/saleor/saleor/discussions
 - https://gitter.im/mirumee/saleor
@@ -135,10 +135,10 @@ If you have any questions or feedback, do not hesitate to contact us on GitHub d
 
 ## License
 
-Disclaimer: Everything you see here is open and free to use as long as you comply with the [license](https://github.com/mirumee/saleor-platform/blob/master/LICENSE). There are no hidden charges. We promise to do our best to fix bugs and improve the code.
+Disclaimer: Everything you see here is open and free to use as long as you comply with the [license](https://github.com/saleor/saleor-platform/blob/main/LICENSE). There are no hidden charges. We promise to do our best to fix bugs and improve the code.
 
 Some situations do call for extra code; we can cover exotic use cases or build you a custom e-commerce appliance.
 
-#### Crafted with ❤️ by [Mirumee Software](http://mirumee.com)
+#### Crafted with ❤️ by [Saleor Commerce](https://saleor.io/)
 
-hello@mirumee.com
+hello@saleor.io
