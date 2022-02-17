@@ -70,6 +70,7 @@ services:
       - saleor-backend-tier
     volumes:
       - saleor-db:/var/lib/postgresql/data
+      - ./replica_user.sql:/docker-entrypoint-initdb.d/replica_user.sql
     environment:
       - POSTGRES_USER=saleor
       - POSTGRES_PASSWORD=saleor
@@ -94,7 +95,9 @@ services:
     restart: unless-stopped
     networks:
       - saleor-backend-tier
-    env_file: backend.env
+    env_file:
+      - common.env
+      - backend.env
     depends_on:
       - redis
       - mailhog
