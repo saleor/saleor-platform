@@ -51,7 +51,7 @@ $ docker-compose run --rm api python3 manage.py populatedb --createsuperuser
 ```
 $ docker-compose up
 ```
-*Both storefront and dashboard are quite big frontend projects and it might take up to few minutes for them to compile depending on your CPU. If nothing shows up on port 3000 or 9000 wait until `Compiled successfully` shows in the console output.*
+*Both storefront and dashboard are quite big frontend projects and it might take up to few minutes for them to compile depending on your CPU. If nothing shows up on port 3001 or 9000 wait until `Compiled successfully` shows in the console output.*
 
 
 ## How to update the subprojects to the newest versions?
@@ -66,7 +66,7 @@ You can find the latest version of Saleor, storefront and dashboard in their ind
 
 - https://github.com/saleor/saleor
 - https://github.com/saleor/saleor-dashboard
-- https://github.com/saleor/saleor-storefront
+- https://github.com/saleor/react-storefront
 
 ## How to solve issues with lack of available space or build errors after update
 
@@ -121,7 +121,7 @@ $ docker system prune
 
 ## Where is the application running?
 - Saleor Core (API) - http://localhost:8000
-- Saleor Storefront - http://localhost:3000
+- Saleor React Storefront - http://localhost:3001
 - Saleor Dashboard - http://localhost:9000
 - Jaeger UI (APM) - http://localhost:16686
 - Mailhog (Test email interface) - http://localhost:8025 
