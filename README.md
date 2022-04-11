@@ -114,6 +114,24 @@ $ docker system prune
 </p>
 </details>
 
+### Issues with migrations after changing the versions - resetting the database
+
+Please submit an issue ticket if you spot issues with database migrations during the version update. 
+
+When testing developer releases or making local changes, you might end up in a state where you would like to reset the database completely. Since its state is persisted in the mounted volume, you'll need to run dedicated command.
+
+**Warning!** This command will remove all data already stored in the database.
+
+<details><summary>I've been warned</summary>
+<p>
+
+```
+docker-compose down --volumes db
+```
+
+</p>
+</details>
+   
 ## How to run application parts?
   - `docker-compose up api worker` for backend services only
   - `docker-compose up` for backend and frontend services
