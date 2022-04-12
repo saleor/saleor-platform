@@ -118,7 +118,7 @@ $ docker system prune
 
 Please submit an issue ticket if you spot issues with database migrations during the version update. 
 
-When testing developer releases or making local changes, you might end up in a state where you would like to reset the database completely. Since its state is persisted in the mounted volume, you'll need to run dedicated command.
+When testing developer releases or making local changes, you might end up in a state where you would like to reset the database completely. Since its state is persisted in the mounted volume, you'll need to use a dedicated command.
 
 **Warning!** This command will remove all data already stored in the database.
 
