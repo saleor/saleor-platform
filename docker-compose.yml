@@ -65,7 +65,7 @@ services:
     command: npm start -- --host 0.0.0.0
 
   db:
-    image: library/postgres:14.2-alpine
+    image: library/postgres:13-alpine
     ports:
       - 5432:5432
     restart: unless-stopped
