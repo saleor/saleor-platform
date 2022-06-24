@@ -1,7 +1,13 @@
 # saleor-platform
 All Saleor services started from a single repository
 
-*Keep in mind this repository is for local development only and is not meant to be deployed on any production environment! If you're not a developer and just want to try out Saleor you can check our [live demo](https://demo.saleor.io/).*
+# ⚠️ For **local development only**
+
+If you would like to develop custom [storefront](https://github.com/saleor/react-storefront) or [dashboard](https://github.com/saleor/saleor-dashboard) we recommend setting up those projects individually outside of docker.
+
+If you're not a developer and just want to try out Saleor you can check our [live demo](https://demo.saleor.io/). 
+
+If you want to quickly try out saleor without extra devops use command line `npx saleor storefront create --demo`
 
 ## Requirements
 1. [Docker](https://docs.docker.com/install/)
