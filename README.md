@@ -10,6 +10,28 @@ All Saleor services started from a single repository
 
 ## How to run it?
 
+### With Makefile
+You can run few make commands
+
+#### Bootstrap app
+```shell
+make
+```
+
+#### Run all services
+```shell
+make run
+```
+
+#### Run only backend services
+```shell
+make run-backend 
+```
+
+See [Makefile](Makefile) for all commands 
+
+### With Docker steps
+
 1. Clone the repository:
 
 ```
@@ -22,43 +44,49 @@ git clone https://github.com/saleor/saleor-platform.git --recursive --jobs 3
     - Linux: No action required, sharing already enabled and memory for Docker engine is not limited.
 
 3. Go to the cloned directory:
-```
+```shell
 cd saleor-platform
 ```
 
 4. Build the application:
-```
+```shell
 docker-compose build
 ```
 
 5. Apply Django migrations:
-```
+```shell
 docker-compose run --rm api python3 manage.py migrate
 ```
 
 6. Collect static files:
-```
+```shell
 docker-compose run --rm api python3 manage.py collectstatic --noinput
 ```
 
 7. Populate the database with example data and create the admin user:
-```
+```shell
 docker-compose run --rm api python3 manage.py populatedb --createsuperuser
 ```
 *Note that `--createsuperuser` argument creates an admin account for `admin@example.com` with the password set to `admin`.*
 
 8. Run the application:
-```
+```shell
 docker-compose up
 ```
 *Both storefront and dashboard are quite big frontend projects and it might take up to few minutes for them to compile depending on your CPU. If nothing shows up on port 3001 or 9000 wait until `Compiled successfully` shows in the console output.*
 
+## Where is the application running?
+- Saleor Core (API) - http://localhost:8000
+- Saleor React Storefront - http://localhost:3001
+- Saleor Dashboard - http://localhost:9000
+- Jaeger UI (APM) - http://localhost:16686
+- Mailhog (Test email interface) - http://localhost:8025 
 
 ## How to update the subprojects to the newest versions?
 This repository contains newest stable versions.
 When new release appear, pull new version of this repository.
 In order to update all of them to their newest versions, run:
-```
+```shell
 git submodule update --remote
 ```
 
@@ -74,19 +102,19 @@ Most of the time both issues can be solved by cleaning up space taken by old con
 
 
 1. Make sure docker stack is not running
-```
+```shell
 docker-compose stop
 ```
 
 2. Remove existing volumes
 
 **Warning!** Proceeding will remove also your database container! If you need existing data, please remove only services which cause problems! https://docs.docker.com/compose/reference/rm/
-```
+```shell
 docker-compose rm
 ```
 
 3. Build fresh containers 
-```
+```shell
 docker-compose build
 ```
 
@@ -107,7 +135,7 @@ If you are getting issues with lack of available space, consider prunning your d
 <details><summary>I've been warned</summary>
 <p>
 
-```
+```shell
 docker system prune
 ```
 
@@ -125,7 +153,7 @@ When testing developer releases or making local changes, you might end up in a s
 <details><summary>I've been warned</summary>
 <p>
 
-```
+```shell
 docker-compose down --volumes db
 ```
 
@@ -136,14 +164,7 @@ docker-compose down --volumes db
   - `docker-compose up api worker` for backend services only
   - `docker-compose up` for backend and frontend services
 
-
-## Where is the application running?
-- Saleor Core (API) - http://localhost:8000
-- Saleor React Storefront - http://localhost:3001
-- Saleor Dashboard - http://localhost:9000
-- Jaeger UI (APM) - http://localhost:16686
-- Mailhog (Test email interface) - http://localhost:8025 
-
+## Feedback
 
 If you have any questions or feedback, do not hesitate to contact us via GitHub or Gitter:
 
