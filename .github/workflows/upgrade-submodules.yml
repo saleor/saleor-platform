@@ -1,0 +1,39 @@
+name: upgrade-submodules
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '0 9 * * 5' # 9:00AM on Friday
+jobs:
+  open_pull_request:
+    if: github.repository == 'saleor/saleor-platform'
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Checkout recursively
+        uses: actions/checkout@v2
+        with:
+          submodules: recursive
+      - name: Configure git
+        run: |
+          git config user.name 'DevRel Bot'
+          git config user.email 'noreply@saleor.io'
+      - name: Update submodules
+        run: |
+          git submodule foreach git fetch origin
+          git submodule foreach git checkout main
+      - name: Check if something changed
+        run: |
+          echo "NO_OF_CHANGES=$(git status --short | wc -l)" >> $GITHUB_ENV
+          echo "BRANCH_NAME=submodules-upgrade-$(date '+%Y%m%d%H%M')" >> $GITHUB_ENV
+      - name: Create new branch, commit upgrades and push it
+        if: env.NO_OF_CHANGES != '0'
+        run: |
+          git checkout -b $BRANCH_NAME
+          git add .
+          git commit -m"Periodic submodules upgrade"
+          git push --set-upstream origin $BRANCH_NAME
+      - name: Open pull request
+        if: env.NO_OF_CHANGES != '0'
+        run: |
+          gh pr create --fill
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
