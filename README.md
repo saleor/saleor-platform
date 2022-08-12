@@ -82,10 +82,12 @@ docker-compose up
 - Jaeger UI (APM) - http://localhost:16686
 - Mailhog (Test email interface) - http://localhost:8025 
 
-## How to update the subprojects to the newest versions?
-This repository contains newest stable versions.
-When new release appear, pull new version of this repository.
-In order to update all of them to their newest versions, run:
+## How to update to the newest versions?
+
+This project contains Saleor applicaitons as git submodules. In main branch, they are updated to newest stable versions.
+
+To update, you can clone saleor-platform again or update submodules.
+
 ```shell
 git submodule update --remote
 ```
