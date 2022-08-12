@@ -167,9 +167,7 @@ docker-compose down --volumes db
 
 ## Feedback
 
-If you have any questions or feedback, do not hesitate to contact us via GitHub or Gitter:
-
-- https://github.com/saleor/saleor/discussions
+If you have any questions or feedback, do not hesitate to contact us via [GitHub Discussions](https://github.com/saleor/saleor/discussions).
 
 ## License
 
