@@ -18,8 +18,8 @@ jobs:
           git config user.email 'noreply@saleor.io'
       - name: Update submodules
         run: |
-          git submodule foreach git fetch origin
           git submodule foreach git checkout main
+          git submodule foreach git pull
       - name: Check if something changed
         run: |
           echo "NO_OF_CHANGES=$(git status --short | wc -l)" >> $GITHUB_ENV
