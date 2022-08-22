@@ -3,6 +3,12 @@ All Saleor services started from a single repository
 
 *Keep in mind this repository is for local development only and is not meant to be deployed in any production environment! If you're not a developer and just want to try out Saleor you can check our [live demo](https://demo.saleor.io/).*
 
+## Breaking changes
+
+This project contains several projects that are connected. Latest `main` branch should always work, but if modules were update individually, it's possible that they will not be stable.
+
+In case of problems, fetching new saleor-platform is recommended. If local repository must be kept, consider updating to commit hashes that are pointer from `main` branch of saleor-platform
+
 ## Requirements
 1. [Docker](https://docs.docker.com/install/)
 2. [Docker Compose](https://docs.docker.com/compose/install/)
