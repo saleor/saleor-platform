@@ -5,7 +5,7 @@ All Saleor services started from a single repository
 
 ## Breaking changes
 
-This project contains several projects that are connected. Latest `main` branch should always work, but if modules were update individually, it's possible that they will not be stable.
+This project contains several projects that are connected. The `main` branch is always stable, but if modules were updated individually, it's possible they will not work correctly.
 
 In case of problems, fetching new saleor-platform is recommended. If local repository must be kept, consider updating to commit hashes that are pointer from `main` branch of saleor-platform
 
