@@ -7,7 +7,9 @@ All Saleor services started from a single repository
 
 This project contains several projects that are connected. The `main` branch is always stable, but if modules were updated individually, it's possible they will not work correctly.
 
-In case of problems, fetching new saleor-platform is recommended. If local repository must be kept, consider updating to commit hashes that are pointer from `main` branch of saleor-platform
+In case of problems, fetching new saleor-platform is recommended. If local repository must be kept, consider updating to commit hashes that are pointed from `main` branch of saleor-platform.
+
+To fetch fresh repository, follow [section below](#how-to-clone-the-repository)
 
 ## Requirements
 1. [Docker](https://docs.docker.com/install/)
