@@ -30,8 +30,8 @@ services:
       - backend.env
     environment:
       - JAEGER_AGENT_HOST=jaeger
-      - STOREFRONT_URL=http://localhost:3000/
-      - DASHBOARD_URL=http://localhost:9000/
+      - STOREFRONT_URL=http://localhost:3001/
+      - DASHBOARD_URL=http://localhost:9001/
       - ALLOWED_HOSTS=localhost,api
 
   react-storefront:
@@ -39,7 +39,7 @@ services:
       context: ./react-storefront
       dockerfile: ./Dockerfile.dev
     ports:
-      - 3000:3000
+      - 3001:3000
     restart: unless-stopped
     networks:
       - saleor-backend-tier
@@ -75,7 +75,7 @@ services:
       context: ./saleor-dashboard
       dockerfile: ./Dockerfile.dev
     ports:
-      - 9000:9000
+      - 9001:9000
     restart: unless-stopped
     volumes:
       - ./saleor-dashboard/:/app:cached
