@@ -1,0 +1,8 @@
+query MainMenu($locale: LanguageCodeEnum!, $channel: String!) {
+  menu(slug: "navbar", channel: $channel) {
+    id
+    items {
+      ...MenuItemWithChildrenFragment
+    }
+  }
+}

@@ -1,0 +1,22 @@
+fragment ProductVariantDetailsFragment on ProductVariant {
+  id
+  name
+  translation(languageCode: $locale) {
+    id
+    name
+  }
+  quantityAvailable
+  attributes {
+    ...SelectedAttributeDetailsFragment
+  }
+  media {
+    ...ProductMediaFragment
+  }
+  pricing {
+    price {
+      gross {
+        ...PriceFragment
+      }
+    }
+  }
+}
