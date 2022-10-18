@@ -26,7 +26,6 @@ git clone https://github.com/saleor/saleor-platform.git --recursive --jobs 3
 ## How to run it?
 
 ### With Makefile
-We prepared a few `make` commands for you
 
 #### Bootstrap app
 ```shell
