@@ -34,41 +34,24 @@ services:
       - DASHBOARD_URL=http://localhost:9000/
       - ALLOWED_HOSTS=localhost,api
 
-  react-storefront:
-    build:
-      context: ./react-storefront
-      dockerfile: ./Dockerfile.dev
-    ports:
-      - 3000:3000
-    restart: unless-stopped
+  storefront:
+    extends:
+      file: ./react-storefront/docker-compose.yml
+      service: storefront
     networks:
       - saleor-backend-tier
     depends_on:
       - api
-    volumes:
-      - ./react-storefront/:/app:cached
-      # do not share node_modules/ between host and containers (pnpm dependencies were download when image was built)
-      - /app/node_modules/
-      - /app/apps/checkout/node_modules/
-      - /app/apps/saleor-app-checkout/node_modules/
-      - /app/apps/storefront/node_modules/
-      - /app/packages/checkout-common/node_modules/
-      - /app/packages/checkout-storefront/node_modules/
-      - /app/packages/env-vars/node_modules/
-      - /app/packages/eslint-config-checkout/node_modules/
-      - /app/packages/eslint-config-storefront/node_modules/
-      - /app/packages/tsconfig/node_modules/
-      - /app/packages/ui-kit/node_modules/
-      # turborepo relies on git to calculate global hash, but because here react-storefront is a submodule
-      # so we cannot rely on git (because main repo .git directory is not available from docker container)
-      # therefore we hide .git file before container and turborepo fallback to (less effective) hasing mechanism
-      # without involvment of git
-      - /dev/null:/app/.git
-    # Nginx is used to proxy SSR requests thru docker networking
-    command: sh -c '(nginx &) && pnpm turbo run dev --parallel --cache-dir=.turbo'
-    environment:
-      - NEXT_PUBLIC_API_URI=http://localhost:8000/graphql/
-      - NEXT_PUBLIC_HOMEPAGE_MENU=navbar
+      - saleor-app-checkout
+
+  saleor-app-checkout:
+    extends:
+      file: ./react-storefront/docker-compose.yml
+      service: saleor-app-checkout
+    networks:
+      - saleor-backend-tier
+    depends_on:
+      - api
 
   dashboard:
     build:
