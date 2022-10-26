@@ -1,0 +1,15 @@
+name: test-upgrade-submodules
+on: pull_request
+
+jobs:
+  verify_pull_request:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          submodules: recursive
+      - name: Build
+        run: docker-compose build
+      - name: Run backend tests
+        run: docker-compose run api pytest
