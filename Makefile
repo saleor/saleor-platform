@@ -9,3 +9,5 @@ run-backend:
 	docker-compose up api worker
 upgrade:
 	git submodule update --remote
+tunnel:
+	cd ./react-storefront/apps/saleor-app-checkout && npx saleor app tunnel 3001
