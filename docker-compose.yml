@@ -56,14 +56,13 @@ services:
   dashboard:
     build:
       context: ./saleor-dashboard
-      dockerfile: ./Dockerfile.dev
+      dockerfile: ./Dockerfile
     ports:
-      - 9000:9000
+      - 9000:80
     restart: unless-stopped
     volumes:
       - ./saleor-dashboard/:/app:cached
-      - /app/node_modules/
-    command: npm start -- --host 0.0.0.0
+
 
   db:
     image: library/postgres:13-alpine
