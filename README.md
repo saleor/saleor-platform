@@ -1,6 +1,6 @@
 <h1 align="center">
   <br>
-  <a href="https://www.automotics.be"><img src="https://user-images.githubusercontent.com/20838072/200111727-56dfa750-7ec4-4bdb-a99e-afda943c8226.png" alt="Automotics" width="200"></a>
+  <a href="https://www.automotics.be"><img src="https://user-images.githubusercontent.com/20838072/200111727-56dfa750-7ec4-4bdb-a99e-afda943c8226.png" alt="Automotics" width="200">Automotics</a>
   <br>
 </h1>
 <p>
