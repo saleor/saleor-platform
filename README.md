@@ -44,7 +44,7 @@ make run-backend
 
 ### Expose saleor-app-checkout
 ```shell
-make tunnel
+make tunnel-checkout
 ```
 
 > Note
