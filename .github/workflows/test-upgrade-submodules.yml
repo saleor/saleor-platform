@@ -9,7 +9,6 @@ jobs:
       - uses: actions/checkout@v3
         with:
           submodules: recursive
-      - run: docker compose -v
       - name: Build
         run: docker-compose build
       - name: Run backend tests
