@@ -1,0 +1,42 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: db
+spec:
+  template:
+    spec:
+      initContainers:
+        - name: volume-dirs-init
+          image: busybox:1.35
+          command:
+            - "/bin/mkdir"
+          args:
+            - "-p"
+            - "/db/data"
+          volumeMounts:
+            - name: db-volume
+              mountPath: "/db"
+      containers:
+        - name: db
+          image: postgres:13-alpine
+          envFrom:
+            - secretRef:
+                name: db-secret
+          ports:
+            - name: db
+              containerPort: 5432
+              protocol: TCP
+          volumeMounts:
+            - name: db-volume
+              mountPath: /var/lib/postgresql/data
+              subPath: data
+            - name: replica-user-volume
+              mountPath: /docker-entrypoint-initdb.d
+      volumes:
+        - name: db-volume
+          persistentVolumeClaim:
+            claimName: db
+        - name: replica-user-volume
+          configMap:
+            name: db-replica-user
