@@ -60,8 +60,6 @@ services:
     ports:
       - 9000:80
     restart: unless-stopped
-    volumes:
-      - ./saleor-dashboard/:/app:cached
 
 
   db:
