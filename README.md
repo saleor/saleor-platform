@@ -115,7 +115,8 @@ docker-compose up
 
 ## Where is the application running?
 - Saleor Core (API) - http://localhost:8000
-- Saleor React Storefront - http://localhost:3001
+- Saleor React Storefront - http://localhost:3000
+- Saleor App Checkout - http://localhost:3001
 - Saleor Dashboard - http://localhost:9000
 - Jaeger UI (APM) - http://localhost:16686
 - Mailhog (Test email interface) - http://localhost:8025 
