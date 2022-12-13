@@ -1,0 +1,121 @@
+fragment Money on Money {
+  currency
+  amount
+}
+
+fragment OrderLineFragment on OrderLine {
+  id
+  quantity
+  variant {
+    name
+    attributes(variantSelection: ALL) {
+      values {
+        name
+      }
+    }
+  }
+  totalPrice {
+    gross {
+      ...Money
+    }
+  }
+  undiscountedUnitPrice {
+    gross {
+      ...Money
+    }
+  }
+  unitPrice {
+    gross {
+      ...Money
+    }
+  }
+  productName
+  variantName
+  thumbnail {
+    alt
+    url
+  }
+}
+
+fragment AddressFragment on Address {
+  id
+  city
+  phone
+  postalCode
+  companyName
+  cityArea
+  streetAddress1
+  streetAddress2
+  countryArea
+  country {
+    country
+    code
+  }
+  firstName
+  lastName
+}
+
+fragment Shipping on ShippingMethod {
+  name
+  minimumDeliveryDays
+  maximumDeliveryDays
+}
+
+fragment Order on Order {
+  id
+  number
+  userEmail
+  isPaid
+  discounts {
+    type
+    name
+    amount {
+      ...Money
+    }
+  }
+  shippingAddress {
+    ...AddressFragment
+  }
+  billingAddress {
+    ...AddressFragment
+  }
+  deliveryMethod {
+    ...Shipping
+  }
+  total {
+    gross {
+      ...Money
+    }
+    tax {
+      ...Money
+    }
+  }
+  voucher {
+    code
+  }
+  shippingPrice {
+    gross {
+      ...Money
+    }
+  }
+  subtotal {
+    gross {
+      ...Money
+    }
+  }
+  lines {
+    ...OrderLineFragment
+  }
+  totalBalance {
+    ...Money
+  }
+  totalCaptured {
+    ...Money
+  }
+}
+
+query order($id: ID!) {
+  order(id: $id) {
+    ...Order
+  }
+}

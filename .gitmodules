@@ -2,8 +2,5 @@
 	path = saleor
 	url = https://github.com/iacobfred/saleor.git
 [submodule "saleor-dashboard"]
-	path = saleor-dashboard
+	path = react/saleor-dashboard
 	url = https://github.com/iacobfred/saleor-dashboard.git
-[submodule "shops"]
-	path = shops
-	url = https://github.com/iacobfred/shops.git

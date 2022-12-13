@@ -1,0 +1,16 @@
+mutation CheckoutShippingAddressUpdate(
+  $token: UUID!
+  $address: AddressInput!
+  $locale: LanguageCodeEnum!
+) {
+  checkoutShippingAddressUpdate(shippingAddress: $address, token: $token) {
+    checkout {
+      ...CheckoutDetailsFragment
+    }
+    errors {
+      field
+      message
+      code
+    }
+  }
+}

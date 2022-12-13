@@ -44,7 +44,7 @@ services:
 
   storefront:
     extends:
-      file: ./stores/kwstriping/docker-compose.yml
+      file: ./react/shops/kwstriping/docker-compose.yml
       service: storefront
     networks:
       - saleor-backend-tier
@@ -54,7 +54,7 @@ services:
 
   saleor-app-checkout:
     extends:
-      file: ./stores/kwstriping/docker-compose.yml
+      file: ./react/shops/kwstriping/docker-compose.yml
       service: saleor-app-checkout
     networks:
       - saleor-backend-tier
@@ -63,7 +63,7 @@ services:
 
   dashboard:
     build:
-      context: ./saleor-dashboard
+      context: ./react/saleor-dashboard
       dockerfile: ./Dockerfile
     ports:
       - 9000:80

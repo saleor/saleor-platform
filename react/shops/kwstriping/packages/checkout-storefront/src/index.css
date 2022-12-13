@@ -1,0 +1,36 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap");
+@import "react-toastify/dist/ReactToastify.css";
+@import "./views/Checkout/CheckoutStyles.css";
+@import "./components/Divider/DividerStyles.css";
+@import "./hooks/useAlerts/AlertStyles.css";
+@import "./components/SelectBox/SelectBoxStyles.css";
+@import "./components/PasswordInput/PasswordInputStyles.css";
+@import "./components/Skeleton/SkeletonStyles.css";
+@import "./sections/CheckoutForm/CheckoutFormStyles.css";
+@import "./views/OrderConfirmation/OrderConfirmationStyles.css";
+@import "./sections/Summary/SummaryStyles.css";
+@import "./sections/PageHeader/PageHeaderStyles.css";
+@import "@adyen/adyen-web/dist/adyen.css";
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Font size set for rem */
+
+html {
+  font-size: 62.5%;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  @apply overscroll-none;
+}
+
+.adyen-checkout__button {
+  @apply bg-button-primary hover:bg-button-secondary hover:text-text-secondary hover:border-border-active active:bg-button-tertiary disabled:border-none disabled:bg-button-quaternary;
+}
+.adyen-checkout__button:hover .adyen-checkout__button__icon {
+  filter: brightness(0.25);
+}

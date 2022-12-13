@@ -1,0 +1,16 @@
+mutation CheckoutShippingMethodUpdate(
+  $token: UUID!
+  $shippingMethodId: ID!
+  $locale: LanguageCodeEnum!
+) {
+  checkoutShippingMethodUpdate(shippingMethodId: $shippingMethodId, token: $token) {
+    checkout {
+      ...CheckoutDetailsFragment
+    }
+    errors {
+      field
+      message
+      code
+    }
+  }
+}

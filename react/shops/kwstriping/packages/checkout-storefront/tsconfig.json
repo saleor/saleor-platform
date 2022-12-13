@@ -1,0 +1,21 @@
+{
+  "extends": "tsconfig/react-library.json",
+  "include": ["src", "types.d.ts"],
+  "exclude": ["dist", "build", "node_modules"],
+  "compilerOptions": {
+    "types": ["node", "jest"],
+    "baseUrl": ".",
+    "lib": ["DOM", "DOM.Iterable", "ESNext"],
+    "paths": {
+      "@/checkout-storefront/icons": ["./src/assets/icons"],
+      "@/checkout-storefront/images": ["./src/assets/images"],
+      "@/checkout-storefront/*": ["./src/*"]
+    },
+    "outDir": "dist",
+    "composite": false,
+    "allowJs": true,
+    "noEmit": true,
+    "incremental": true,
+    "jsx": "preserve"
+  }
+}
