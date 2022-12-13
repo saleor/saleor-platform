@@ -19,7 +19,7 @@
 </div>
 
 <div align="center">
-  <a href="https://githubbox.com/saleor/saleor-platform">🔎 Explore Code</a>
+  <a href="https://githubbox.com/iacobfred/saleor-platform">🔎 Explore Code</a>
 </div>
 
 ## About
@@ -27,8 +27,8 @@
 ### What is Saleor Platform?
 
 Saleor Platform is the easiest way to start local development with all the major Saleor services:
-- [Core GraphQL API](https://github.com/saleor/saleor)
-- [Dashboard](https://github.com/saleor/saleor-dashboard)
+- [Core GraphQL API](https://github.com/iacobfred/saleor)
+- [Dashboard](https://github.com/iacobfred/saleor-dashboard)
 - [Storefront with Checkout](https://github.com/saleor/react-storefront)
 
 *Keep in mind this repository is for local development only and is not meant to be deployed in any production environment! If you're not a developer and just want to try out Saleor you can check our [live demo](https://demo.saleor.io/).*
@@ -50,7 +50,7 @@ To fetch fresh repository, follow [section below](#how-to-clone-the-repository)
 To clone the repository, run the following command
 
 ```
-git clone https://github.com/saleor/saleor-platform.git --recursive --jobs 3
+git clone https://github.com/iacobfred/saleor-platform.git --recursive --jobs 3
 ```
 
 ## How to run it?
@@ -130,8 +130,8 @@ git submodule update --remote
 
 You can find the latest version of Saleor, Storefront and Dashboard in their individual repositories:
 
-- https://github.com/saleor/saleor
-- https://github.com/saleor/saleor-dashboard
+- https://github.com/iacobfred/saleor
+- https://github.com/iacobfred/saleor-dashboard
 - https://github.com/saleor/react-storefront
 
 ## How to solve issues with lack of available space or build errors after an update

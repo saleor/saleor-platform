@@ -4,6 +4,6 @@
 [submodule "saleor-dashboard"]
 	path = saleor-dashboard
 	url = https://github.com/iacobfred/saleor-dashboard.git
-[submodule "react-storefront"]
-	path = react-storefront
-	url = https://github.com/saleor/react-storefront.git
+[submodule "shops"]
+	path = shops
+	url = https://github.com/iacobfred/shops.git

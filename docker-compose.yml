@@ -1,5 +1,3 @@
-version: "3.4"
-
 services:
   api:
     ports:
@@ -33,10 +31,20 @@ services:
       - STOREFRONT_URL=http://localhost:3000/
       - DASHBOARD_URL=http://localhost:9000/
       - ALLOWED_HOSTS=localhost,api
+    healthcheck:
+      test:
+        [
+          "CMD-SHELL",
+          "curl --fail http://localhost:8000/_healthcheck/ || exit 1"
+        ]
+      timeout: 7s
+      interval: 30s
+      retries: 3
+      start_period: 60s
 
   storefront:
     extends:
-      file: ./react-storefront/docker-compose.yml
+      file: ./stores/kwstriping/docker-compose.yml
       service: storefront
     networks:
       - saleor-backend-tier
@@ -46,7 +54,7 @@ services:
 
   saleor-app-checkout:
     extends:
-      file: ./react-storefront/docker-compose.yml
+      file: ./stores/kwstriping/docker-compose.yml
       service: saleor-app-checkout
     networks:
       - saleor-backend-tier
@@ -60,7 +68,6 @@ services:
     ports:
       - 9000:80
     restart: unless-stopped
-
 
   db:
     image: library/postgres:13-alpine
