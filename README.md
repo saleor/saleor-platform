@@ -55,27 +55,6 @@ git clone https://github.com/saleor/saleor-platform.git --recursive --jobs 3
 
 ## How to run it?
 
-### With Makefile
-
-#### Bootstrap app
-```shell
-make
-```
-
-#### Run all services
-```shell
-make run
-```
-
-#### Run only backend services
-```shell
-make run-backend 
-```
-
-See [Makefile](Makefile) for all commands 
-
-### With Docker steps
-
 1. We are using shared folders to enable live code reloading. Without this, Docker Compose will not start:
     - Windows/MacOS: Add the cloned `saleor-platform` directory to Docker shared directories (Preferences -> Resources -> File sharing).
     - Windows/MacOS: Make sure that in Docker preferences you have dedicated at least 5 GB of memory (Preferences -> Resources -> Advanced).
