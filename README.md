@@ -76,10 +76,9 @@ See [Makefile](Makefile) for all commands
 
 ### With Docker steps
 
-1. We are using shared folders to enable live code reloading. Without this, Docker Compose will not start:
-    - Windows/MacOS: Add the cloned `saleor-platform` directory to Docker shared directories (Preferences -> Resources -> File sharing).
-    - Windows/MacOS: Make sure that in Docker preferences you have dedicated at least 5 GB of memory (Preferences -> Resources -> Advanced).
-    - Linux: No action is required, sharing is already enabled and memory for the Docker engine is not limited.
+1. Project is using shared folders to enable live code reloading. For `macOS` and `Windows` users following steps are required to run `Docker compose`:
+    - Add the cloned `saleor-platform` directory to Docker shared directories (Preferences -> Resources -> File sharing).
+    - In Docker preferences dedicate at least 5 GB of memory (Preferences -> Resources -> Advanced).
 
 2. Go to the cloned directory:
 ```shell
