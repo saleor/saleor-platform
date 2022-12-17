@@ -1,5 +1,8 @@
 .next
 pnpm-lock.yaml
 .rollup-cache
+.rollup.cache
 _next
 .turbo
+dist
+graphql.schema.json

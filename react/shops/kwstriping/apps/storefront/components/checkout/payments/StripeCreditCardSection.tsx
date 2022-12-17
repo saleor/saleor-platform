@@ -134,12 +134,14 @@ function StripeCardForm({ checkout }: StripeCardFormInterface) {
       }
 
       // Try to complete checkout
-      const { data: confirmedCompleteData, errors: confirmedCompleteErrors } =
-        await checkoutCompleteMutation({
-          variables: {
-            checkoutToken: checkout.token,
-          },
-        });
+      const {
+        data: confirmedCompleteData,
+        errors: confirmedCompleteErrors,
+      } = await checkoutCompleteMutation({
+        variables: {
+          checkoutToken: checkout.token,
+        },
+      });
 
       if (confirmedCompleteErrors) {
         console.error(

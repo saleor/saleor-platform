@@ -17,7 +17,7 @@ function useSetFormErrors<TFormData>({
     if (hasErrors) {
       forEach(errors, (error, key) => {
         setError(key as Path<TFormData>, {
-          message: (error as unknown as FieldError).message,
+          message: ((error as unknown) as FieldError).message,
         });
       });
     }

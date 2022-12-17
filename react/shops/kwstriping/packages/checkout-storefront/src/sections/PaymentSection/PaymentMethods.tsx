@@ -68,10 +68,10 @@ export const PaymentMethods: React.FC<PaymentMethodsProps> = ({
     }
   }, [loading, allPaymentOptions, availablePaymentMethods, selectedPaymentMethod, setValue]);
 
-  const paymentProviderID = useMemo(
-    () => allPaymentOptions?.[selectedPaymentMethod],
-    [selectedPaymentMethod, allPaymentOptions]
-  );
+  const paymentProviderID = useMemo(() => allPaymentOptions?.[selectedPaymentMethod], [
+    selectedPaymentMethod,
+    allPaymentOptions,
+  ]);
 
   useEffect(() => {
     if (paymentProviderID) {

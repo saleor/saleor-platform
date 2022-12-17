@@ -59,7 +59,11 @@ export function BurgerMenu({ open, onCloseClick }: BurgerMenuProps) {
           <div className="flex flex-col">
             {authenticated ? (
               <>
-                <Link href={paths.account.preferences.$url()} tabIndex={0} className={styles["burger-link"]}>
+                <Link
+                  href={paths.account.preferences.$url()}
+                  tabIndex={0}
+                  className={styles["burger-link"]}
+                >
                   {t.formatMessage(messages.menuAccountPreferences)}
                 </Link>
                 <button

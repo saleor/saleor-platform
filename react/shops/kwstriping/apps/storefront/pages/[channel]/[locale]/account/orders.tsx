@@ -7,12 +7,7 @@ import { useOrdersQuery } from "@/saleor/api";
 
 function OrdersPage() {
   const { authenticated } = useAuthState();
-  const {
-    data: ordersCollection,
-    loading,
-    error,
-    fetchMore,
-  } = useOrdersQuery({
+  const { data: ordersCollection, loading, error, fetchMore } = useOrdersQuery({
     skip: !authenticated,
   });
 

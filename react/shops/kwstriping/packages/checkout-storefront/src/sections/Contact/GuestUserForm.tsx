@@ -72,10 +72,10 @@ export const GuestUserForm: React.FC<AnonymousCustomerFormProps> = ({ onSectionC
 
   useEffect(() => setContextValue("email", emailValue), [emailValue, setContextValue]);
 
-  useEffect(
-    () => setContextValue("createAccount", createAccountSelected),
-    [createAccountSelected, setContextValue]
-  );
+  useEffect(() => setContextValue("createAccount", createAccountSelected), [
+    createAccountSelected,
+    setContextValue,
+  ]);
 
   const onSubmit = useCallback(
     async ({ email }: FormData) => {

@@ -15,8 +15,10 @@ const PaymentProvider = () => {
   const intl = useIntl();
 
   const getPaymentProviderSettings = useGetPaymentProviderSettings();
-  const [setPaymentProviderSettings, setPaymentProviderSettingsRequest] =
-    useSetPaymentProviderSettings();
+  const [
+    setPaymentProviderSettings,
+    setPaymentProviderSettingsRequest,
+  ] = useSetPaymentProviderSettings();
 
   const paymentProviders = usePaymentProviderSettings(getPaymentProviderSettings.data);
 

@@ -70,7 +70,7 @@ export function MainMenu() {
                             role="menuitem"
                             className="ml-3 text-black hover:font-semibold hover:text-black"
                           >
-                           {translate(child, "name")}
+                            {translate(child, "name")}
                           </Link>
                         </li>
                       );

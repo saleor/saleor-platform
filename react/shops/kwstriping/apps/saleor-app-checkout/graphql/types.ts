@@ -8826,6 +8826,7 @@ export type PermissionEnum =
   | "MANAGE_CHECKOUTS"
   | "MANAGE_DISCOUNTS"
   | "MANAGE_GIFT_CARD"
+  | "MANAGE_MEDIA"
   | "MANAGE_MENUS"
   | "MANAGE_ORDERS"
   | "MANAGE_PAGES"

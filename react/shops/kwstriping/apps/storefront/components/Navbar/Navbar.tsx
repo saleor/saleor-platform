@@ -16,6 +16,7 @@ import UserMenu from "./UserMenu";
 import { useRegions } from "@/components/RegionsProvider";
 
 export function Navbar() {
+  const shopName = "KW Striping";
   const paths = usePaths();
   const router = useRouter();
 
@@ -50,7 +51,7 @@ export function Navbar() {
         <div className={clsx(styles.inner)}>
           <div className="h-full xs:flex items-center">
             <Link href={paths.$url()} className={styles.logo}>
-              KW Striping
+              {shopName}
             </Link>
           </div>
           <div className="flex-1 flex h-full xs:justify-center">
@@ -64,9 +65,11 @@ export function Navbar() {
             ) : (
               <UserMenu />
             )}
-            <Link href={externalCheckoutUrl} className="ml-2 hidden xs:flex">
-              <NavIconButton icon="bag" aria-hidden="true" counter={counter} />
-            </Link>
+            {checkout && (
+              <Link href={externalCheckoutUrl} className="ml-2 hidden xs:flex">
+                <NavIconButton icon="bag" aria-hidden="true" counter={counter} />
+              </Link>
+            )}
             <Link href={paths.search.$url()} className="hidden lg:flex ml-2">
               <NavIconButton icon="spyglass" data-testid="searchIcon" />
             </Link>

@@ -2,7 +2,7 @@ import { ApolloQueryResult } from "@apollo/client";
 import { GetStaticPaths, GetStaticPropsContext, InferGetStaticPropsType } from "next";
 import React, { ReactElement } from "react";
 
-import { Layout } from "@/components";
+import { HomepageBlock, Layout } from "@/components";
 import { BaseSeo } from "@/components/seo/BaseSeo";
 import { HOMEPAGE_MENU } from "@/lib/const";
 import apolloClient from "@/lib/graphql";
@@ -12,7 +12,6 @@ import {
   HomepageBlocksQueryDocument,
   HomepageBlocksQueryVariables,
 } from "@/saleor/api";
-import Link from "next/link";
 
 export const getStaticProps = async (context: GetStaticPropsContext) => {
   const result: ApolloQueryResult<HomepageBlocksQuery> = await apolloClient.query<
@@ -26,39 +25,38 @@ export const getStaticProps = async (context: GetStaticPropsContext) => {
     props: {
       menuData: result?.data,
     },
-    revalidate: 60 * 60,
+    revalidate: 60 * 60, // value in seconds, how often ISR will trigger on the server
   };
 };
 
-function Home({}: InferGetStaticPropsType<typeof getStaticProps>) {
-  const shopName = "KW Striping";
-  const shopDescription = "We paint fields.";
-  const catalogCta = "Request service";
+function Catalog({ menuData }: InferGetStaticPropsType<typeof getStaticProps>) {
   return (
     <>
       <BaseSeo />
-      <main className="container h-full">
-        <div id="bg" className="h-full w-full flex flex-col items-center justify-center">
-          <h1 className="text-center text-white">{`Welcome to ${shopName}`}</h1>
-          <p className="lead text-center text-white my-4">{shopDescription}</p>
-          <p className="text-center">
-            <Link href="/catalog" className="btn btn-primary px-3">
-              {catalogCta}
-            </Link>
-          </p>
-        </div>
-      </main>
+      <div className="py-10">
+        <header className="mb-4">
+          <div className="container" />
+        </header>
+        <main>
+          <div className="container">
+            {menuData?.menu?.items?.map((m) => {
+              if (!m) return null;
+              return <HomepageBlock key={m.id} menuItem={m} />;
+            })}
+          </div>
+        </main>
+      </div>
     </>
   );
 }
 
-export default Home;
+export default Catalog;
 
 export const getStaticPaths: GetStaticPaths = () => ({
   paths: [],
   fallback: "blocking",
 });
 
-Home.getLayout = function getLayout(page: ReactElement) {
+Catalog.getLayout = function getLayout(page: ReactElement) {
   return <Layout>{page}</Layout>;
 };

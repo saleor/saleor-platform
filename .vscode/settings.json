@@ -2,7 +2,66 @@
     "cSpell.words": [
         "autoupdate",
         "clsx",
+        "codegen",
+        "dedupe",
+        "editorjs",
+        "formatjs",
+        "Frend",
+        "giftcard",
+        "graphene",
+        "graphiql",
         "healthcheck",
-        "saleor"
-    ]
+        "nextjs",
+        "oembed",
+        "phonenumber",
+        "pluralizer",
+        "pnpm",
+        "postbuild",
+        "preorder",
+        "prestart",
+        "saleor",
+        "sendgrid",
+        "tailwindcss",
+        "testid",
+        "urql"
+    ],
+    "editor.rulers": [100],
+    "eslint.validate": [
+        "javascript",
+        "javascriptreact",
+        "typescript",
+        "typescriptreact"
+    ],
+    "files.eol": "\n",
+    "files.exclude": {
+        "**/.git": false,
+        "**/.svn": true,
+        "**/.hg": true,
+        "**/CVS": true,
+        "**/.DS_Store": true,
+        "**/Thumbs.db": true,
+        "**/*.pyc": true,
+        "**/__pycache__": true,
+        "**/node_modules": false,
+        "**/.next": true,
+        "**/.turbo": true,
+        "**/.pytest_cache": true,
+    },
+    "python.defaultInterpreterPath": "${workspaceFolder}/saleor/.venv/bin/python",
+    "python.formatting.provider": "black",
+    "python.terminal.activateEnvironment": true,
+    "python.terminal.activateEnvInCurrentTerminal": true,
+    "[python]": {
+        "editor.codeActionsOnSave": {
+            "source.organizeImports": true
+        },
+        "editor.formatOnSave": true
+    },
+    "search.exclude": {
+        "**/.venv": true,
+        "**/node_modules": true,
+    },
+    "workbench.editor.limit.value": 7,
+    "workbench.tree.indent": 16,
+    "workbench.iconTheme": "material-icon-theme"
 }

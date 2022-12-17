@@ -22,7 +22,6 @@
     "check-types": "turbo run check-types --cache-dir=.turbo",
     "test": "env-cmd --no-override -f .env turbo run test --cache-dir=.turbo",
     "format": "prettier --write .",
-    "prepare": "husky install",
     "clean-deps": "turbo run clean && rm -rf node_modules **/node_modules pnpm-lock.yaml",
     "clean": "rm -rf .turbo; turbo run clean",
     "cy:run": "cypress run",

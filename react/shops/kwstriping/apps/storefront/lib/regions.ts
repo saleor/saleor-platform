@@ -8,9 +8,9 @@ export const LOCALES = [
     code: "EN_US" as LanguageCodeEnum,
     name: "American English",
   },
-  { slug: "pl-PL", code: "PL_PL" as LanguageCodeEnum, name: "Polski" },
-  { slug: "fr-FR", code: "FR_FR" as LanguageCodeEnum, name: "Français" },
-  { slug: "vi-VN", code: "VI_VN" as LanguageCodeEnum, name: "Việt Nam" },
+  // { slug: "pl-PL", code: "PL_PL" as LanguageCodeEnum, name: "Polski" },
+  // { slug: "fr-FR", code: "FR_FR" as LanguageCodeEnum, name: "Français" },
+  // { slug: "vi-VN", code: "VI_VN" as LanguageCodeEnum, name: "Việt Nam" },
 ];
 export const DEFAULT_LOCALE = "en-US";
 
@@ -30,21 +30,21 @@ export const DEFAULT_CHANNEL: Channel = {
 
 export const CHANNELS: Channel[] = [
   DEFAULT_CHANNEL,
-  {
-    slug: "channel-pln",
-    name: "Polski Złoty",
-    currencyCode: "PLN",
-  },
-  {
-    slug: "channel-fr",
-    name: "Euro",
-    currencyCode: "EUR",
-  },
-  {
-    slug: "channel-vi",
-    name: "Việt Nam đồng",
-    currencyCode: "VND",
-  },
+  // {
+  //   slug: "channel-pln",
+  //   name: "Polski Złoty",
+  //   currencyCode: "PLN",
+  // },
+  // {
+  //   slug: "channel-fr",
+  //   name: "Euro",
+  //   currencyCode: "EUR",
+  // },
+  // {
+  //   slug: "channel-vi",
+  //   name: "Việt Nam đồng",
+  //   currencyCode: "VND",
+  // },
 ];
 
 export interface RegionCombination {

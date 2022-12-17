@@ -4,50 +4,49 @@ import invariant from "ts-invariant";
 import { debugEnvVars, envVars, envVarsNames } from "../constants";
 import { isAuthenticated, isAuthorized } from "./auth";
 
-export const allowCors =
-  (fn: NextApiHandler): NextApiHandler =>
-  async (req, res) => {
-    console.log({ "req.headers.origin": req.headers.origin });
-    res.setHeader("Access-Control-Allow-Origin", req.headers.origin || "*");
-    res.setHeader("Access-Control-Allow-Methods", "GET,OPTIONS,POST");
-    res.setHeader(
-      "Access-Control-Allow-Headers",
-      "X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version"
-    );
+export const allowCors = (fn: NextApiHandler): NextApiHandler => async (req, res) => {
+  console.log({ "req.headers.origin": req.headers.origin });
+  res.setHeader("Access-Control-Allow-Origin", req.headers.origin || "*");
+  res.setHeader("Access-Control-Allow-Methods", "GET,OPTIONS,POST");
+  res.setHeader(
+    "Access-Control-Allow-Headers",
+    "X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version"
+  );
 
-    if (req.method === "OPTIONS") {
-      res.status(200).end();
-      return;
-    }
+  if (req.method === "OPTIONS") {
+    res.status(200).end();
+    return;
+  }
 
-    return fn(req, res);
-  };
+  return fn(req, res);
+};
 
-export const requireAuthorization =
-  (fn: NextApiHandler, requiredPermissions?: PermissionEnum[]): NextApiHandler =>
-  async (req, res) => {
-    const authenticated = await isAuthenticated(req);
+export const requireAuthorization = (
+  fn: NextApiHandler,
+  requiredPermissions?: PermissionEnum[]
+): NextApiHandler => async (req, res) => {
+  const authenticated = await isAuthenticated(req);
 
-    if (!authenticated) {
-      return res.status(401).json({
-        error: {
-          message: "Unauthenticated",
-        },
-      });
-    }
+  if (!authenticated) {
+    return res.status(401).json({
+      error: {
+        message: "Unauthenticated",
+      },
+    });
+  }
 
-    const authorized = isAuthorized(req, requiredPermissions);
+  const authorized = isAuthorized(req, requiredPermissions);
 
-    if (!authorized) {
-      return res.status(403).json({
-        error: {
-          message: "Unauthorized",
-        },
-      });
-    }
+  if (!authorized) {
+    return res.status(403).json({
+      error: {
+        message: "Unauthorized",
+      },
+    });
+  }
 
-    return fn(req, res);
-  };
+  return fn(req, res);
+};
 
 export const getBaseUrl = (req: { headers: Record<string, string | string[] | undefined> }) => {
   if (debugEnvVars?.appUrl) {

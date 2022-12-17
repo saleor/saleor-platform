@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "debug": "NODE_OPTIONS='--inspect' next dev --port 3000",
-    "dev": "npx kill-port 3000; next dev --port 3000",
+    "dev": "docker system prune; npx kill-port 3000; next dev --port 3000",
     "build": "next build",
     "postbuild": "next-sitemap",
     "translations": "formatjs extract './{components,pages}/**/*.{ts,tsx}' --out-file temp.json --flatten --id-interpolation-pattern '[sha512:contenthash:base64:6]' && formatjs compile 'temp.json' --out-file locale/en-US.json && rm ./temp.json",
@@ -25,6 +25,7 @@
     "@heroicons/react": "^1.0.6",
     "@saleor/sdk": "^0.4.4",
     "@saleor/ui-kit": "workspace:*",
+    "@sentry/nextjs": "^7.19.0",
     "@stripe/react-stripe-js": "^1.7.0",
     "@stripe/stripe-js": "^1.26.0",
     "@tailwindcss/aspect-ratio": "^0.4.0",

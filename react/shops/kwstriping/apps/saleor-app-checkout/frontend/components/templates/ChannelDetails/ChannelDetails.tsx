@@ -60,12 +60,7 @@ const ChannelDetails: React.FC<ChannelDetailsProps> = ({
   const router = useRouter();
   const classes = useStyles();
   const { actions } = useOffsettedListWidths();
-  const {
-    control,
-    handleSubmit: handleSubmitForm,
-    formState,
-    reset: resetForm,
-  } = useForm({
+  const { control, handleSubmit: handleSubmitForm, formState, reset: resetForm } = useForm({
     shouldUnregister: true, // Legacy fields from different subpage using the same form might be still present, this should unregister them
   });
 

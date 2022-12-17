@@ -26,7 +26,7 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
           params: { slug: node.slug },
         })) || [];
       fields = paths.map((path) => ({
-        loc: `https://localhost:3001/category/${path.params.slug}`,
+        loc: `https://localhost:3001/catalog/${path.params.slug}`,
       }));
     } else if (ctx.params.sitemap === "collection") {
       const result: ApolloQueryResult<CollectionPathsQuery | undefined> = await apolloClient.query({

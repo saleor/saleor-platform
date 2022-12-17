@@ -1,0 +1,5 @@
+.next
+.rollup.cache
+.turbo
+dist
+pnpm-lock.yaml

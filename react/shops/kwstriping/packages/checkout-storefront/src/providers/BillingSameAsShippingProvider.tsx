@@ -9,8 +9,10 @@ interface BillingSameAsShippingContextConsumerProps {
   setHasBillingSameAsShippingAddressChanged: (value: boolean) => void;
 }
 
-export const [useBillingSameAsShipping, Provider] =
-  createSafeContext<BillingSameAsShippingContextConsumerProps>();
+export const [
+  useBillingSameAsShipping,
+  Provider,
+] = createSafeContext<BillingSameAsShippingContextConsumerProps>();
 
 export const BillingSameAsShippingProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
   const { checkout } = useCheckout();
@@ -19,8 +21,10 @@ export const BillingSameAsShippingProvider: React.FC<{ children: ReactNode }> = 
     !checkout?.billingAddress
   );
 
-  const [hasBillingSameAsShippingAddressChanged, setHasBillingSameAsShippingAddressChanged] =
-    useState(false);
+  const [
+    hasBillingSameAsShippingAddressChanged,
+    setHasBillingSameAsShippingAddressChanged,
+  ] = useState(false);
 
   const providerValues: BillingSameAsShippingContextConsumerProps = {
     isBillingSameAsShippingAddress,

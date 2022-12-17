@@ -32,8 +32,9 @@ module.exports = {
   },
   framework: "@storybook/react",
   webpackFinal: async (config, options) => {
-    config.module.rules.find((rule) => rule.test.toString() === "/\\.css$/").exclude =
-      /\.module\.css$/;
+    config.module.rules.find(
+      (rule) => rule.test.toString() === "/\\.css$/"
+    ).exclude = /\.module\.css$/;
 
     config.module.rules.push({
       test: /\.module\.css$/,

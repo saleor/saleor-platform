@@ -375,7 +375,8 @@ export const checkout: CheckoutFragment = {
             {
               alt: "",
               type: "IMAGE",
-              url: "https://master.staging.saleor.cloud/media/thumbnails/products/saleordemoproduct_cl_bogo02_1_thumbnail_64.png",
+              url:
+                "https://master.staging.saleor.cloud/media/thumbnails/products/saleordemoproduct_cl_bogo02_1_thumbnail_64.png",
               __typename: "ProductMedia",
             },
             {
@@ -391,7 +392,8 @@ export const checkout: CheckoutFragment = {
           {
             alt: "",
             type: "IMAGE",
-            url: "https://master.staging.saleor.cloud/media/thumbnails/products/saleordemoproduct_cl_bogo02_1_thumbnail_64.png",
+            url:
+              "https://master.staging.saleor.cloud/media/thumbnails/products/saleordemoproduct_cl_bogo02_1_thumbnail_64.png",
             __typename: "ProductMedia",
           },
         ],
@@ -443,7 +445,8 @@ export const checkout: CheckoutFragment = {
             {
               alt: "",
               type: "IMAGE",
-              url: "https://master.staging.saleor.cloud/media/thumbnails/products/saleordemoproduct_fd_juice_05_thumbnail_64.png",
+              url:
+                "https://master.staging.saleor.cloud/media/thumbnails/products/saleordemoproduct_fd_juice_05_thumbnail_64.png",
               __typename: "ProductMedia",
             },
           ],
@@ -453,7 +456,8 @@ export const checkout: CheckoutFragment = {
           {
             alt: "",
             type: "IMAGE",
-            url: "https://master.staging.saleor.cloud/media/thumbnails/products/saleordemoproduct_fd_juice_05_thumbnail_64.png",
+            url:
+              "https://master.staging.saleor.cloud/media/thumbnails/products/saleordemoproduct_fd_juice_05_thumbnail_64.png",
             __typename: "ProductMedia",
           },
         ],

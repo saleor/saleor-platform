@@ -29,7 +29,7 @@ export function ImageExpand({ image, onRemoveExpand }: ImageExpandProps) {
         <XIcon className="w-6 h-6" />
       </div>
       <div className="w-full h-full absolute md:mt-10">
-        <Image src={image.url} alt={image.alt} layout="fill" objectFit="scale-down" />
+        <Image src={image.url} alt={image.alt} fill style={{ objectFit: "scale-down" }} />
       </div>
     </div>
   );

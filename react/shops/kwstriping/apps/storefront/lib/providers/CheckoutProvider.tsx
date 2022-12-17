@@ -25,11 +25,7 @@ export function CheckoutProvider({ children }: { children: ReactNode }) {
 
   const [checkoutToken, setCheckoutToken] = useLocalStorage(CHECKOUT_TOKEN, "", { sync: true });
 
-  const {
-    data,
-    loading,
-    error: checkoutError,
-  } = useCheckoutByTokenQuery({
+  const { data, loading, error: checkoutError } = useCheckoutByTokenQuery({
     variables: { checkoutToken, locale: localeToEnum(locale) },
     skip: !checkoutToken || typeof window === "undefined",
   });

@@ -83,15 +83,15 @@ export const isMatchingAddress = (
   return isEqual(omit(address, "id"), omit(addressToMatch, "id"));
 };
 
-export const getMatchingAddressFromList =
-  (addressList: AddressFragment[] = []) =>
-  (addressToMatch: Address) => {
-    if (!addressToMatch) {
-      return undefined;
-    }
+export const getMatchingAddressFromList = (addressList: AddressFragment[] = []) => (
+  addressToMatch: Address
+) => {
+  if (!addressToMatch) {
+    return undefined;
+  }
 
-    return addressList.find((address) => isMatchingAddress(address, addressToMatch));
-  };
+  return addressList.find((address) => isMatchingAddress(address, addressToMatch));
+};
 
 export const isMatchingAddressFormData = (
   address?: Partial<AddressFormData> | null,

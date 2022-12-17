@@ -12,7 +12,7 @@ class MyDocument extends Document<{ lang?: string }> {
     const { hostname } = new URL(uri);
 
     return (
-      <Html lang={this.props.lang}>
+      <Html lang={this.props.lang} className={"h-full"}>
         <Head>
           <link rel="preconnect" href={`//${hostname}`} crossOrigin="true" />
           <link rel="dns-prefetch" href={`//${hostname}`} />
@@ -21,7 +21,7 @@ class MyDocument extends Document<{ lang?: string }> {
             rel="stylesheet"
           />
         </Head>
-        <body spellCheck={false}>
+        <body spellCheck={false} className={"h-full"}>
           <Main />
           <NextScript />
         </body>

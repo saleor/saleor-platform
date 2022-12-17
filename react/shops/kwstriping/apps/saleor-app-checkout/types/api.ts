@@ -42,9 +42,11 @@ export type ChannelActivePaymentProviders = {
 
 export type PaymentProviderSettingsValues<E extends SettingReadMode> = {
   [P in PaymentProviderID]: E extends "unencrypted"
-    ? Partial<{
-        [K in PaymentProviderSettingID<P>]: string;
-      }>
+    ? Partial<
+        {
+          [K in PaymentProviderSettingID<P>]: string;
+        }
+      >
     : {
         [K in PaymentProviderSettingID<P>]: SettingValue;
       };
@@ -66,9 +68,11 @@ export type UnknownPublicSettingsValues = {
 };
 export type UnknownPrivateSettingsValues<E extends SettingReadMode> = {
   [P in string]: E extends "unencrypted"
-    ? Partial<{
-        [K in string]: string;
-      }>
+    ? Partial<
+        {
+          [K in string]: string;
+        }
+      >
     : {
         [K in string]: SettingValue;
       };

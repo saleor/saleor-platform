@@ -10,19 +10,13 @@ services:
     restart: unless-stopped
     networks:
       - saleor-backend-tier
-    stdin_open: true
-    tty: true
     depends_on:
       - db
       - redis
       - jaeger
     volumes:
-      - ./saleor/saleor/:/app/saleor:Z
-      - ./saleor/templates/:/app/templates:Z
-      - ./saleor/tests/:/app/tests
       # shared volume between worker and api for media
       - saleor-media:/app/media
-    command: python manage.py runserver 0.0.0.0:8000
     env_file:
       - common.env
       - backend.env
@@ -35,7 +29,7 @@ services:
       test:
         [
           "CMD-SHELL",
-          "curl --fail http://localhost:8000/_healthcheck/ || exit 1"
+          "curl --fail http://localhost:8000/_health/ || exit 1"
         ]
       timeout: 7s
       interval: 30s
@@ -63,14 +57,14 @@ services:
 
   dashboard:
     build:
-      context: ./react/saleor-dashboard
+      context: ./react/dashboard
       dockerfile: ./Dockerfile
     ports:
       - 9000:80
     restart: unless-stopped
 
   db:
-    image: library/postgres:13-alpine
+    image: library/postgres:15-alpine
     ports:
       - 5432:5432
     restart: unless-stopped

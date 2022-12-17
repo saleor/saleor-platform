@@ -49,8 +49,8 @@ export function ProductGallery({ product, selectedVariant }: ProductGalleryProps
                   onClick={() => setExpandedImage(media)}
                   src={media.url}
                   alt={media.alt}
-                  layout="fill"
-                  objectFit="cover"
+                  fill
+                  style={{ objectFit: "cover" }}
                   role="button"
                   tabIndex={-2}
                   priority
@@ -73,8 +73,8 @@ export function ProductGallery({ product, selectedVariant }: ProductGalleryProps
                     <Image
                       src={videoThumbnailUrl}
                       alt={media.alt}
-                      layout="fill"
-                      objectFit="cover"
+                      fill
+                      style={{ objectFit: "cover" }}
                     />
                   )}
                   <div className="transition duration-500 ease-in-out transform hover:-translate-y-1 hover:scale-110 absolute w-full h-full flex justify-center items-center bg-transparent">

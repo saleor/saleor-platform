@@ -61,7 +61,7 @@ export const pagesPath = {
       category: {
         _slug: (slug: string | number) => ({
           $url: (url?: { hash?: string }) => ({
-            pathname: "/[channel]/[locale]/category/[slug]" as const,
+            pathname: "/[channel]/[locale]/catalog/[slug]" as const,
             query: { channel, locale, slug },
             hash: url?.hash,
           }),
@@ -93,7 +93,7 @@ export const pagesPath = {
       page: {
         _slug: (slug: string | number) => ({
           $url: (url?: { hash?: string }) => ({
-            pathname: "/[channel]/[locale]/page/[slug]" as const,
+            pathname: "/[channel]/[locale]/pages/[slug]" as const,
             query: { channel, locale, slug },
             hash: url?.hash,
           }),

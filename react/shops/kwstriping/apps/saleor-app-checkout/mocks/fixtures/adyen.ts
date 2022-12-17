@@ -10,39 +10,40 @@ declare class NotificationRequestItem extends AdyenNotificationRequestItem {
   };
 }
 
-const getNotificationWithHmac =
-  (notificationItem: NotificationRequestItem) => (hmac?: string | null) => {
-    const getResponse = (item: NotificationRequestItem) => ({
-      live: "false",
-      notificationItems: [
-        {
-          NotificationRequestItem: item,
-        },
-      ],
-    });
+const getNotificationWithHmac = (notificationItem: NotificationRequestItem) => (
+  hmac?: string | null
+) => {
+  const getResponse = (item: NotificationRequestItem) => ({
+    live: "false",
+    notificationItems: [
+      {
+        NotificationRequestItem: item,
+      },
+    ],
+  });
 
-    if (hmac === null) {
-      return getResponse(notificationItem);
-    }
+  if (hmac === null) {
+    return getResponse(notificationItem);
+  }
 
-    if (typeof hmac === "string") {
-      return getResponse({
-        ...notificationItem,
-        additionalData: {
-          ...notificationItem.additionalData,
-          hmacSignature: hmac,
-        },
-      });
-    }
-
+  if (typeof hmac === "string") {
     return getResponse({
       ...notificationItem,
       additionalData: {
         ...notificationItem.additionalData,
-        hmacSignature: adyenHmacValidator.calculateHmac(notificationItem, testingVars.adyenHmac),
+        hmacSignature: hmac,
       },
     });
-  };
+  }
+
+  return getResponse({
+    ...notificationItem,
+    additionalData: {
+      ...notificationItem.additionalData,
+      hmacSignature: adyenHmacValidator.calculateHmac(notificationItem, testingVars.adyenHmac),
+    },
+  });
+};
 
 export const ADYEN_ORDER_ID = "T3JkZXI6MGQ4NDRiZDMtYTA5YS00NzUyLWE0ODktYzFlMzM2Y2I4ZjU4";
 export const ADYEN_ORIGINAL_REFERENCE = "LD65H2FVNXSKGK82";
@@ -68,10 +69,10 @@ const paymentRequest: NotificationRequestItem = {
   eventDate: "2022-07-28T14:08:36+02:00",
   merchantAccountCode: "SaleorECOM",
   merchantReference: "3394",
-  operations: [
+  operations: ([
     "CANCEL",
     "CAPTURE",
-  ] as unknown as Array<Types.notification.NotificationRequestItem.OperationsEnum>,
+  ] as unknown) as Array<Types.notification.NotificationRequestItem.OperationsEnum>,
   paymentMethod: "mc",
   pspReference: ADYEN_ORIGINAL_REFERENCE,
   reason: "085117:0004:03/2030",
@@ -90,9 +91,9 @@ const paymentCapture: NotificationRequestItem = {
   eventDate: "2022-07-28T16:17:01+02:00",
   originalReference: ADYEN_ORIGINAL_REFERENCE,
   pspReference: "NP5DFGQGJRWZNN82",
-  operations: [
+  operations: ([
     "REFUND",
-  ] as unknown as Array<Types.notification.NotificationRequestItem.OperationsEnum>,
+  ] as unknown) as Array<Types.notification.NotificationRequestItem.OperationsEnum>,
   reason: "",
 };
 export const getPaymentCapture = getNotificationWithHmac(paymentCapture);

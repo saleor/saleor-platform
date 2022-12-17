@@ -8,8 +8,10 @@ interface PrivateSettingsProviderContext {
   setPrivateSettings: Dispatch<SetStateAction<PrivateSettingsValues<"unencrypted">>>;
 }
 
-export const [usePrivateSettingsContext, Provider] =
-  createSafeContext<PrivateSettingsProviderContext>();
+export const [
+  usePrivateSettingsContext,
+  Provider,
+] = createSafeContext<PrivateSettingsProviderContext>();
 
 const PrivateSettingsProvider: React.FC<{ children: ReactNode }> = (props) => {
   const [privateSettings, setPrivateSettings] = useState(defaultPrivateSettings);

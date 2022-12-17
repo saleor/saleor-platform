@@ -38,7 +38,7 @@ export function Footer({ className, ...rest }: FooterProps) {
         <div className="flex mb-14 sm:mb-10">
           <Link href={paths.$url()} className="hidden sm:inline-block">
             <div className="mt-px group block h-16 w-28 relative grayscale">
-              <Image src="/saleor.svg" alt="Saleor logo" layout="fill" />
+              <Image src="/saleor.svg" alt="Saleor logo" fill />
             </div>
           </Link>
           <div className="grid grid-cols-2 gap-[2rem] w-full sm:w-auto sm:flex sm:flex-wrap sm:justify-end sm:ml-auto">
@@ -54,7 +54,10 @@ export function Footer({ className, ...rest }: FooterProps) {
                     {item?.name}
                   </a>
                 ) : (
-                  <Link href={getLinkPath(item, currentChannel.slug, currentLocale)} className={styles["menu-heading"]}>
+                  <Link
+                    href={getLinkPath(item, currentChannel.slug, currentLocale)}
+                    className={styles["menu-heading"]}
+                  >
                     {item?.name}
                   </Link>
                 )}
@@ -72,7 +75,7 @@ export function Footer({ className, ...rest }: FooterProps) {
                           {sub?.name}
                         </a>
                       ) : (
-                        <Link 
+                        <Link
                           href={getLinkPath(sub, currentChannel.slug, currentLocale)}
                           className={styles["menu-link"]}
                           data-testid={`footerInternalLinks${sub?.name}`}

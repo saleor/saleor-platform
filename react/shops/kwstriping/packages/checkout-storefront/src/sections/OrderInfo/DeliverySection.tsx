@@ -17,8 +17,10 @@ export const DeliverySection = ({
   const formatMessage = useFormattedMessages();
 
   const getDeliveryEstimateText = () => {
-    const { minimumDeliveryDays: min, maximumDeliveryDays: max } =
-      deliveryMethod as ShippingFragment;
+    const {
+      minimumDeliveryDays: min,
+      maximumDeliveryDays: max,
+    } = deliveryMethod as ShippingFragment;
 
     if (!min || !max) {
       return undefined;

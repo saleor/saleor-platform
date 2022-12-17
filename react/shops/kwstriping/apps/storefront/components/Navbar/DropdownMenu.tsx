@@ -36,7 +36,10 @@ function Dropdown({ menuItem }: DropdownProps) {
                       {item?.name}
                     </a>
                   ) : (
-                    <Link href={getLinkPath(item, slug, currentLocale)} className={styles["dropdown-main"]}>
+                    <Link
+                      href={getLinkPath(item, slug, currentLocale)}
+                      className={styles["dropdown-main"]}
+                    >
                       {item?.name}
                     </Link>
                   )}
@@ -44,7 +47,10 @@ function Dropdown({ menuItem }: DropdownProps) {
                     <ul className={styles["dropdown-ul"]}>
                       {item?.children?.map((sub) => (
                         <li key={sub?.id}>
-                          <Link href={getLinkPath(sub, slug, currentLocale)} className={styles["dropdown-link"]}>
+                          <Link
+                            href={getLinkPath(sub, slug, currentLocale)}
+                            className={styles["dropdown-link"]}
+                          >
                             {sub?.name}
                           </Link>
                         </li>

@@ -50,6 +50,7 @@ function LoginPage() {
 
     if (data?.tokenCreate?.errors[0]) {
       // Unable to sign in.
+      console.error(data.tokenCreate.errors[0].message);
       setErrorForm("email", { message: "Invalid credentials" });
     }
   });

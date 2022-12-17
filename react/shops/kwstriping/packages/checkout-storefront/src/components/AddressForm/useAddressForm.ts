@@ -55,7 +55,7 @@ export const useAddressForm = ({
   const resolver = useValidationResolver(schema);
 
   const formProps = useForm<AddressFormData>({
-    resolver: resolver as unknown as Resolver<AddressFormData, any>,
+    resolver: (resolver as unknown) as Resolver<AddressFormData, any>,
     mode: "onChange",
     defaultValues: {
       ...(defaultValues as DefaultValues<AddressFormData>),

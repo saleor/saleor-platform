@@ -7,15 +7,12 @@ import queryString from "query-string";
 import { ChangeEvent, ReactEventHandler } from "react";
 import { OperationResult } from "urql";
 
-export const getById =
-  <T extends { id: string }>(idToCompare: string | undefined) =>
-  (obj: T) =>
-    obj.id === idToCompare;
+export const getById = <T extends { id: string }>(idToCompare: string | undefined) => (obj: T) =>
+  obj.id === idToCompare;
 
-export const getByUnmatchingId =
-  <T extends { id: string }>(idToCompare: string | undefined) =>
-  (obj: T) =>
-    obj.id !== idToCompare;
+export const getByUnmatchingId = <T extends { id: string }>(idToCompare: string | undefined) => (
+  obj: T
+) => obj.id !== idToCompare;
 
 export type QueryParams = Partial<
   Record<
@@ -125,8 +122,8 @@ export const extractMutationErrors = <TData extends FormDataBase, TVars = any>(
   return [errors.length > 0, errors];
 };
 
-export const handleInputChange =
-  <TData>(callback: (value: TData) => void): ReactEventHandler<HTMLInputElement> =>
-  (event: ChangeEvent<HTMLInputElement>) => {
-    callback(event.target.value as unknown as TData);
-  };
+export const handleInputChange = <TData>(
+  callback: (value: TData) => void
+): ReactEventHandler<HTMLInputElement> => (event: ChangeEvent<HTMLInputElement>) => {
+  callback((event.target.value as unknown) as TData);
+};

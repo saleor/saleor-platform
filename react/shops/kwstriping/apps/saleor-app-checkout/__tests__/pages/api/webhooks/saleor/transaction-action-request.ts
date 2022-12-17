@@ -19,8 +19,8 @@ handler.config = config;
 jest.mock("@saleor/app-sdk/middleware", () => ({
   __esModule: true,
   ...jest.requireActual("@saleor/app-sdk/middleware"),
-  withWebhookSignatureVerified: jest.fn(
-    (_) => (handler) => (req) => handler(req)
+  withWebhookSignatureVerified: jest.fn((_) => (handler) => (req) =>
+    handler(req)
   ) as jest.MockedFunction<typeof withWebhookSignatureVerified>,
 }));
 

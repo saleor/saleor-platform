@@ -26,8 +26,10 @@ export function CheckoutLineItem({ line }: CheckoutLineItemProps) {
   const t = useIntl();
   const { query, formatPrice } = useRegions();
   const { checkoutToken: token } = useCheckout();
-  const [checkoutLineUpdateMutation, { loading: loadingLineUpdate }] =
-    useCheckoutLineUpdateMutation();
+  const [
+    checkoutLineUpdateMutation,
+    { loading: loadingLineUpdate },
+  ] = useCheckoutLineUpdateMutation();
   const [removeProductFromCheckout] = useRemoveProductFromCheckoutMutation();
 
   const [quantity, setQuantity] = React.useState<number>();
@@ -73,7 +75,7 @@ export function CheckoutLineItem({ line }: CheckoutLineItemProps) {
           <Image
             src={line.variant.product?.thumbnail?.url}
             alt={line.variant.product?.thumbnail?.alt || ""}
-            layout="fill"
+            fill
           />
         )}
       </div>
@@ -83,8 +85,8 @@ export function CheckoutLineItem({ line }: CheckoutLineItemProps) {
           <div className="flex justify-between">
             <div className="pr-6">
               <h3 className="text-md md:text-xl font-bold">
-                <Link 
-                  href={paths.products._slug(line?.variant?.product?.slug).$url()} 
+                <Link
+                  href={paths.products._slug(line?.variant?.product?.slug).$url()}
                   className="font-medium text-gray-700 hover:text-gray-800"
                   data-testid={`cartProductItem${line?.variant.product.name}`}
                 >

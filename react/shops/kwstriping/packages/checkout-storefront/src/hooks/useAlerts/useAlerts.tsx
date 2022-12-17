@@ -9,7 +9,9 @@ import { useCallback } from "react";
 import { errorMessages } from "@/checkout-storefront/hooks/useAlerts/messages";
 import { ErrorCode } from "@/checkout-storefront/lib/globalTypes";
 
-function useAlerts(scope: CheckoutScope): {
+function useAlerts(
+  scope: CheckoutScope
+): {
   showErrors: (errors: ApiErrors<any>) => void;
   showCustomErrors: (errors: CustomError[]) => void;
 };

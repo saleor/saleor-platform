@@ -14,8 +14,10 @@ export function SavedAddressSelectionList({
   updateAddressMutation,
 }: SavedAddressSelectionListProps) {
   const { loading, error, data } = useCurrentUserAddressesQuery();
-  const [selectedSavedAddress, setSelectedSavedAddress] =
-    React.useState<AddressDetailsFragment | null>();
+  const [
+    selectedSavedAddress,
+    setSelectedSavedAddress,
+  ] = React.useState<AddressDetailsFragment | null>();
 
   if (loading) {
     return <Spinner />;

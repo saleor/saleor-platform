@@ -42,8 +42,12 @@ const PaymentProviderDetails: React.FC<PaymentProviderDetailsProps> = ({
   const intl = useIntl();
   const paymentProviders = usePaymentProviders();
 
-  const { encryptedSettings, publicSettings, hasEncryptedSettings, hasPublicSettings } =
-    extractSettingsData(selectedPaymentProvider);
+  const {
+    encryptedSettings,
+    publicSettings,
+    hasEncryptedSettings,
+    hasPublicSettings,
+  } = extractSettingsData(selectedPaymentProvider);
 
   const flatSettings = Object.fromEntries(
     selectedPaymentProvider.settings.map((setting) => [setting.id, setting.value])

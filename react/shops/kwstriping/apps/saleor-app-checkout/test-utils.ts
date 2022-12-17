@@ -23,8 +23,8 @@ export const mockRequest = (method: RequestMethod = "GET") => {
   };
 
   return {
-    req: req as unknown as NextApiRequest,
-    res: res as unknown as TestNextApiResponse,
+    req: (req as unknown) as NextApiRequest,
+    res: (res as unknown) as TestNextApiResponse,
   };
 };
 
@@ -46,8 +46,8 @@ export const mockRequestStream = (
   const reqStream = Object.assign(Readable.from([bodyStr]), req, params);
 
   return {
-    req: reqStream as unknown as Readonly<NextApiRequest> & Readable,
-    res: res as unknown as Readonly<TestNextApiResponse>,
+    req: (reqStream as unknown) as Readonly<NextApiRequest> & Readable,
+    res: (res as unknown) as Readonly<TestNextApiResponse>,
   };
 };
 

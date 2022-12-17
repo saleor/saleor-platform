@@ -12,8 +12,14 @@ export const verifyPayment = async (
 ): Promise<TransactionCreateMutationVariables | undefined> => {
   const mollieClient = await getMollieClient();
 
-  const { status, amountCaptured, amountRefunded, metadata, method, amount } =
-    await mollieClient.orders.get(id);
+  const {
+    status,
+    amountCaptured,
+    amountRefunded,
+    metadata,
+    method,
+    amount,
+  } = await mollieClient.orders.get(id);
 
   const type = `${MOLLIE_PAYMENT_PREFIX}-${method || "(unknown-payment-method)"}`;
   const reference = id;

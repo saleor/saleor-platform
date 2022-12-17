@@ -30,7 +30,7 @@ export const getStaticProps = async (context: GetStaticPropsContext) => {
   };
 };
 
-function Home({}: InferGetStaticPropsType<typeof getStaticProps>) {
+function Gallery({}: InferGetStaticPropsType<typeof getStaticProps>) {
   const shopName = "KW Striping";
   const shopDescription = "We paint fields.";
   const catalogCta = "Request service";
@@ -52,13 +52,13 @@ function Home({}: InferGetStaticPropsType<typeof getStaticProps>) {
   );
 }
 
-export default Home;
+export default Gallery;
 
 export const getStaticPaths: GetStaticPaths = () => ({
   paths: [],
   fallback: "blocking",
 });
 
-Home.getLayout = function getLayout(page: ReactElement) {
+Gallery.getLayout = function getLayout(page: ReactElement) {
   return <Layout>{page}</Layout>;
 };

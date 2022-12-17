@@ -56,9 +56,8 @@ describe("/utils/frontend/misc/mapSettingsToMetadata", () => {
 
     const mappedMetadata = mapPrivateSettingsToMetadata(settingsValues);
 
-    const providersMetadata = mappedMetadata.find(
-      (metadata) => metadata.key === "paymentProviders"
-    )?.value;
+    const providersMetadata = mappedMetadata.find((metadata) => metadata.key === "paymentProviders")
+      ?.value;
 
     // These metadata are private and encrypted
     expect(providersMetadata).not.toContain(settingsValues.paymentProviders.adyen.apiKey);

@@ -5,7 +5,7 @@ import { ServerStyleSheets } from "@material-ui/styles";
 class Document extends NextDocument {
   override render() {
     return (
-      <Html>
+      <Html className={"h-full"}>
         <Head>
           <meta charSet="utf-8" />
           <link
@@ -13,7 +13,7 @@ class Document extends NextDocument {
             href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons&display=swap"
           />
         </Head>
-        <body spellCheck={false}>
+        <body spellCheck={false} className={"h-full"}>
           <Main />
           <NextScript />
         </body>

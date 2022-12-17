@@ -1,5 +1,5 @@
 .footer {
-  @apply sm:container mb-18 sm:mb-15 mt-16;
+  @apply sm:container mb-6 mt-16;
 }
 
 .footer-inner {

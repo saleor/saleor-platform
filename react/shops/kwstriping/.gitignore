@@ -45,3 +45,5 @@ cypress/videos
 .idea
 
 .auth_token
+# Sentry
+.sentryclirc

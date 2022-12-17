@@ -67,7 +67,7 @@ export const AdyenDropIn = memo<AdyenDropInProps>(({}) => {
     if (result.payment.action) {
       component.handleAction(
         // discrepancy between adyen-api and adyen-web types 🤦‍♂️
-        result.payment.action as unknown as Exclude<AdyenWebPaymentResponse["action"], undefined>
+        (result.payment.action as unknown) as Exclude<AdyenWebPaymentResponse["action"], undefined>
       );
       return;
     } else {

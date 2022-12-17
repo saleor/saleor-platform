@@ -42,10 +42,9 @@ export const Contact: FC<ContactProps> = ({ setShowOnlyContact }) => {
     setCurrentSection(section);
   };
 
-  const isCurrentSection = useCallback(
-    (section: Section) => currentSection === section,
-    [currentSection]
-  );
+  const isCurrentSection = useCallback((section: Section) => currentSection === section, [
+    currentSection,
+  ]);
 
   const shouldShowOnlyContact = onlyContactShownSections.includes(currentSection);
 
