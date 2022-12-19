@@ -98,12 +98,18 @@ docker-compose up
 - Saleor App Checkout - http://localhost:3001
 - Saleor Dashboard - http://localhost:9000
 - Jaeger UI (APM) - http://localhost:16686
-- Mailhog (Test email interface) - http://localhost:8025 
+- Mailhog (Test email interface) - http://localhost:8025
+
+# Troubleshooting
+
+- [How to solve issues with lack of available space or build errors after an update](#how-to-solve-issues-with-lack-of-available-space-or-build-errors-after-an-update)
+- [How to run application parts?](#how-to-run-application-parts)
+- [How to update the subprojects to the newest versions?](#how-to-update-the-subprojects-to-the-newest-versions)
 
 ## How to update the subprojects to the newest versions?
 This repository contains the newest stable versions.
 When a new release is published, pull a new version of this repository.
-In order to update all of the subprojects to their newest versions, run:
+In order to update all the subprojects to their newest versions, run:
 ```shell
 git submodule update --remote
 ```
