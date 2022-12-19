@@ -7,3 +7,4 @@
 [submodule "react-storefront"]
 	path = react-storefront
 	url = https://github.com/saleor/react-storefront.git
+	branch = main
