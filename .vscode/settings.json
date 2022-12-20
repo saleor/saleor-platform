@@ -1,11 +1,16 @@
 {
+    "cSpell.ignoreRegExpList": [
+        " *id: .+",
+    ],
     "cSpell.words": [
         "autoupdate",
+        "backlink",
         "clsx",
         "codegen",
         "dedupe",
         "editorjs",
         "formatjs",
+        "formset",
         "Frend",
         "giftcard",
         "graphene",
@@ -16,16 +21,21 @@
         "phonenumber",
         "pluralizer",
         "pnpm",
+        "pollyjs",
         "postbuild",
+        "predev",
         "preorder",
         "prestart",
         "saleor",
         "sendgrid",
         "tailwindcss",
         "testid",
+        "unpublish",
         "urql"
     ],
     "editor.rulers": [100],
+    "eslint.alwaysShowStatus": true,
+    "eslint.format.enable": true,
     "eslint.validate": [
         "javascript",
         "javascriptreact",

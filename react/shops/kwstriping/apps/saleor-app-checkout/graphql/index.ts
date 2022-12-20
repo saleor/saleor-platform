@@ -3505,7 +3505,7 @@ export type CollectionChannelListing = Node & {
   id: Scalars["ID"];
   isPublished: Scalars["Boolean"];
   /** @deprecated This field will be removed in Saleor 4.0. Use the `publishedAt` field to fetch the publication date. */
-  publicationDate?: Maybe<Scalars["Date"]>;
+  publishedAt?: Maybe<Scalars["Date"]>;
   /**
    * The collection publication date.
    *
@@ -3603,7 +3603,7 @@ export type CollectionCreateInput = {
    *
    * DEPRECATED: this field will be removed in Saleor 4.0.
    */
-  publicationDate?: InputMaybe<Scalars["Date"]>;
+  publishedAt?: InputMaybe<Scalars["Date"]>;
   /** Search engine optimization fields. */
   seo?: InputMaybe<SeoInput>;
   /** Slug of the collection. */
@@ -3743,7 +3743,7 @@ export type CollectionInput = {
    *
    * DEPRECATED: this field will be removed in Saleor 4.0.
    */
-  publicationDate?: InputMaybe<Scalars["Date"]>;
+  publishedAt?: InputMaybe<Scalars["Date"]>;
   /** Search engine optimization fields. */
   seo?: InputMaybe<SeoInput>;
   /** Slug of the collection. */
@@ -12765,7 +12765,7 @@ export type Page = Node &
      */
     privateMetafields?: Maybe<Scalars["Metadata"]>;
     /** @deprecated This field will be removed in Saleor 4.0. Use the `publishedAt` field to fetch the publication date. */
-    publicationDate?: Maybe<Scalars["Date"]>;
+    publishedAt?: Maybe<Scalars["Date"]>;
     /**
      * The page publication date.
      *
@@ -12909,7 +12909,7 @@ export type PageCreateInput = {
    *
    * DEPRECATED: this field will be removed in Saleor 4.0. Use `publishedAt` field instead.
    */
-  publicationDate?: InputMaybe<Scalars["String"]>;
+  publishedAt?: InputMaybe<Scalars["String"]>;
   /**
    * Publication date time. ISO 8601 standard.
    *
@@ -13040,7 +13040,7 @@ export type PageInput = {
    *
    * DEPRECATED: this field will be removed in Saleor 4.0. Use `publishedAt` field instead.
    */
-  publicationDate?: InputMaybe<Scalars["String"]>;
+  publishedAt?: InputMaybe<Scalars["String"]>;
   /**
    * Publication date time. ISO 8601 standard.
    *
@@ -14604,7 +14604,7 @@ export type ProductChannelListing = Node & {
   /** Lists the storefront product's pricing, the current price and discounts, only meant for displaying. */
   pricing?: Maybe<ProductPricingInfo>;
   /** @deprecated This field will be removed in Saleor 4.0. Use the `publishedAt` field to fetch the publication date. */
-  publicationDate?: Maybe<Scalars["Date"]>;
+  publishedAt?: Maybe<Scalars["Date"]>;
   /**
    * The product publication date time.
    *
@@ -14651,7 +14651,7 @@ export type ProductChannelListingAddInput = {
    *
    * DEPRECATED: this field will be removed in Saleor 4.0. Use `publishedAt` field instead.
    */
-  publicationDate?: InputMaybe<Scalars["Date"]>;
+  publishedAt?: InputMaybe<Scalars["Date"]>;
   /**
    * Publication date time. ISO 8601 standard.
    *
@@ -16300,7 +16300,7 @@ export type PublishableChannelListingInput = {
    *
    * DEPRECATED: this field will be removed in Saleor 4.0. Use `publishedAt` field instead.
    */
-  publicationDate?: InputMaybe<Scalars["Date"]>;
+  publishedAt?: InputMaybe<Scalars["Date"]>;
   /**
    * Publication date time. ISO 8601 standard.
    *

@@ -2091,7 +2091,7 @@ export type CollectionChannelListing = Node & {
   channel: Channel;
   id: Scalars["ID"];
   isPublished: Scalars["Boolean"];
-  publicationDate?: Maybe<Scalars["Date"]>;
+  publishedAt?: Maybe<Scalars["Date"]>;
 };
 
 export type CollectionChannelListingError = {
@@ -2167,7 +2167,7 @@ export type CollectionCreateInput = {
   /** List of products to be added to the collection. */
   products?: InputMaybe<Array<InputMaybe<Scalars["ID"]>>>;
   /** Publication date. ISO 8601 standard. */
-  publicationDate?: InputMaybe<Scalars["Date"]>;
+  publishedAt?: InputMaybe<Scalars["Date"]>;
   /** Search engine optimization fields. */
   seo?: InputMaybe<SeoInput>;
   /** Slug of the collection. */
@@ -2230,7 +2230,7 @@ export type CollectionInput = {
   /** Name of the collection. */
   name?: InputMaybe<Scalars["String"]>;
   /** Publication date. ISO 8601 standard. */
-  publicationDate?: InputMaybe<Scalars["Date"]>;
+  publishedAt?: InputMaybe<Scalars["Date"]>;
   /** Search engine optimization fields. */
   seo?: InputMaybe<SeoInput>;
   /** Slug of the collection. */
@@ -8191,7 +8191,7 @@ export type Page = Node &
     pageType: PageType;
     /** List of private metadata items.Requires proper staff permissions to access. */
     privateMetadata: Array<Maybe<MetadataItem>>;
-    publicationDate?: Maybe<Scalars["Date"]>;
+    publishedAt?: Maybe<Scalars["Date"]>;
     seoDescription?: Maybe<Scalars["String"]>;
     seoTitle?: Maybe<Scalars["String"]>;
     slug: Scalars["String"];
@@ -8281,7 +8281,7 @@ export type PageCreateInput = {
   /** ID of the page type that page belongs to. */
   pageType: Scalars["ID"];
   /** Publication date. ISO 8601 standard. */
-  publicationDate?: InputMaybe<Scalars["String"]>;
+  publishedAt?: InputMaybe<Scalars["String"]>;
   /** Search engine optimization fields. */
   seo?: InputMaybe<SeoInput>;
   /** Page internal name. */
@@ -8351,7 +8351,7 @@ export type PageInput = {
   /** Determines if page is visible in the storefront. */
   isPublished?: InputMaybe<Scalars["Boolean"]>;
   /** Publication date. ISO 8601 standard. */
-  publicationDate?: InputMaybe<Scalars["String"]>;
+  publishedAt?: InputMaybe<Scalars["String"]>;
   /** Search engine optimization fields. */
   seo?: InputMaybe<SeoInput>;
   /** Page internal name. */
@@ -9244,7 +9244,7 @@ export type ProductChannelListing = Node & {
   margin?: Maybe<Margin>;
   /** Lists the storefront product's pricing, the current price and discounts, only meant for displaying. */
   pricing?: Maybe<ProductPricingInfo>;
-  publicationDate?: Maybe<Scalars["Date"]>;
+  publishedAt?: Maybe<Scalars["Date"]>;
   /** Purchase cost of product. */
   purchaseCost?: Maybe<MoneyRange>;
   visibleInListings: Scalars["Boolean"];
@@ -9267,7 +9267,7 @@ export type ProductChannelListingAddInput = {
   /** Determines if object is visible to customers. */
   isPublished?: InputMaybe<Scalars["Boolean"]>;
   /** Publication date. ISO 8601 standard. */
-  publicationDate?: InputMaybe<Scalars["Date"]>;
+  publishedAt?: InputMaybe<Scalars["Date"]>;
   /** List of variants from which the channel should be unassigned. */
   removeVariants?: InputMaybe<Array<Scalars["ID"]>>;
   /** Determines if product is visible in product listings (doesn't apply to product collections). */
@@ -10258,7 +10258,7 @@ export type PublishableChannelListingInput = {
   /** Determines if object is visible to customers. */
   isPublished?: InputMaybe<Scalars["Boolean"]>;
   /** Publication date. ISO 8601 standard. */
-  publicationDate?: InputMaybe<Scalars["Date"]>;
+  publishedAt?: InputMaybe<Scalars["Date"]>;
 };
 
 export type Query = {

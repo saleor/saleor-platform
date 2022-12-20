@@ -3518,13 +3518,6 @@ export type CollectionChannelListing = Node & {
   channel: Channel;
   id: Scalars["ID"];
   isPublished: Scalars["Boolean"];
-  /** @deprecated This field will be removed in Saleor 4.0. Use the `publishedAt` field to fetch the publication date. */
-  publicationDate?: Maybe<Scalars["Date"]>;
-  /**
-   * The collection publication date.
-   *
-   * Added in Saleor 3.3.
-   */
   publishedAt?: Maybe<Scalars["DateTime"]>;
 };
 
@@ -3617,7 +3610,7 @@ export type CollectionCreateInput = {
    *
    * DEPRECATED: this field will be removed in Saleor 4.0.
    */
-  publicationDate?: InputMaybe<Scalars["Date"]>;
+  publishedAt?: InputMaybe<Scalars["Date"]>;
   /** Search engine optimization fields. */
   seo?: InputMaybe<SeoInput>;
   /** Slug of the collection. */
@@ -3757,7 +3750,7 @@ export type CollectionInput = {
    *
    * DEPRECATED: this field will be removed in Saleor 4.0.
    */
-  publicationDate?: InputMaybe<Scalars["Date"]>;
+  publishedAt?: InputMaybe<Scalars["Date"]>;
   /** Search engine optimization fields. */
   seo?: InputMaybe<SeoInput>;
   /** Slug of the collection. */
@@ -12785,7 +12778,7 @@ export type Page = Node &
      */
     privateMetafields?: Maybe<Scalars["Metadata"]>;
     /** @deprecated This field will be removed in Saleor 4.0. Use the `publishedAt` field to fetch the publication date. */
-    publicationDate?: Maybe<Scalars["Date"]>;
+    publishedAt?: Maybe<Scalars["Date"]>;
     /**
      * The page publication date.
      *
@@ -12929,7 +12922,7 @@ export type PageCreateInput = {
    *
    * DEPRECATED: this field will be removed in Saleor 4.0. Use `publishedAt` field instead.
    */
-  publicationDate?: InputMaybe<Scalars["String"]>;
+  publishedAt?: InputMaybe<Scalars["String"]>;
   /**
    * Publication date time. ISO 8601 standard.
    *
@@ -13060,7 +13053,7 @@ export type PageInput = {
    *
    * DEPRECATED: this field will be removed in Saleor 4.0. Use `publishedAt` field instead.
    */
-  publicationDate?: InputMaybe<Scalars["String"]>;
+  publishedAt?: InputMaybe<Scalars["String"]>;
   /**
    * Publication date time. ISO 8601 standard.
    *
@@ -14623,7 +14616,7 @@ export type ProductChannelListing = Node & {
   /** Lists the storefront product's pricing, the current price and discounts, only meant for displaying. */
   pricing?: Maybe<ProductPricingInfo>;
   /** @deprecated This field will be removed in Saleor 4.0. Use the `publishedAt` field to fetch the publication date. */
-  publicationDate?: Maybe<Scalars["Date"]>;
+  publishedAt?: Maybe<Scalars["Date"]>;
   /**
    * The product publication date time.
    *
@@ -14670,7 +14663,7 @@ export type ProductChannelListingAddInput = {
    *
    * DEPRECATED: this field will be removed in Saleor 4.0. Use `publishedAt` field instead.
    */
-  publicationDate?: InputMaybe<Scalars["Date"]>;
+  publishedAt?: InputMaybe<Scalars["Date"]>;
   /**
    * Publication date time. ISO 8601 standard.
    *
@@ -16319,7 +16312,7 @@ export type PublishableChannelListingInput = {
    *
    * DEPRECATED: this field will be removed in Saleor 4.0. Use `publishedAt` field instead.
    */
-  publicationDate?: InputMaybe<Scalars["Date"]>;
+  publishedAt?: InputMaybe<Scalars["Date"]>;
   /**
    * Publication date time. ISO 8601 standard.
    *
@@ -29427,7 +29420,7 @@ export type CollectionChannelListingKeySpecifier = (
   | "channel"
   | "id"
   | "isPublished"
-  | "publicationDate"
+  | "publishedAt"
   | "publishedAt"
   | CollectionChannelListingKeySpecifier
 )[];
@@ -29435,7 +29428,7 @@ export type CollectionChannelListingFieldPolicy = {
   channel?: FieldPolicy<any> | FieldReadFunction<any>;
   id?: FieldPolicy<any> | FieldReadFunction<any>;
   isPublished?: FieldPolicy<any> | FieldReadFunction<any>;
-  publicationDate?: FieldPolicy<any> | FieldReadFunction<any>;
+  publishedAt?: FieldPolicy<any> | FieldReadFunction<any>;
   publishedAt?: FieldPolicy<any> | FieldReadFunction<any>;
 };
 export type CollectionChannelListingErrorKeySpecifier = (
@@ -32880,7 +32873,7 @@ export type PageKeySpecifier = (
   | "privateMetadata"
   | "privateMetafield"
   | "privateMetafields"
-  | "publicationDate"
+  | "publishedAt"
   | "publishedAt"
   | "seoDescription"
   | "seoTitle"
@@ -32903,7 +32896,7 @@ export type PageFieldPolicy = {
   privateMetadata?: FieldPolicy<any> | FieldReadFunction<any>;
   privateMetafield?: FieldPolicy<any> | FieldReadFunction<any>;
   privateMetafields?: FieldPolicy<any> | FieldReadFunction<any>;
-  publicationDate?: FieldPolicy<any> | FieldReadFunction<any>;
+  publishedAt?: FieldPolicy<any> | FieldReadFunction<any>;
   publishedAt?: FieldPolicy<any> | FieldReadFunction<any>;
   seoDescription?: FieldPolicy<any> | FieldReadFunction<any>;
   seoTitle?: FieldPolicy<any> | FieldReadFunction<any>;
@@ -33885,7 +33878,7 @@ export type ProductChannelListingKeySpecifier = (
   | "isPublished"
   | "margin"
   | "pricing"
-  | "publicationDate"
+  | "publishedAt"
   | "publishedAt"
   | "purchaseCost"
   | "visibleInListings"
@@ -33901,7 +33894,7 @@ export type ProductChannelListingFieldPolicy = {
   isPublished?: FieldPolicy<any> | FieldReadFunction<any>;
   margin?: FieldPolicy<any> | FieldReadFunction<any>;
   pricing?: FieldPolicy<any> | FieldReadFunction<any>;
-  publicationDate?: FieldPolicy<any> | FieldReadFunction<any>;
+  publishedAt?: FieldPolicy<any> | FieldReadFunction<any>;
   publishedAt?: FieldPolicy<any> | FieldReadFunction<any>;
   purchaseCost?: FieldPolicy<any> | FieldReadFunction<any>;
   visibleInListings?: FieldPolicy<any> | FieldReadFunction<any>;
