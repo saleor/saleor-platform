@@ -24,7 +24,7 @@ services:
       - ./saleor/tests/:/app/tests
       # shared volume between worker and api for media
       - saleor-media:/app/media
-    command: python manage.py runserver 0.0.0.0:8000
+    command: uvicorn --host 0.0.0.0 --port 8000 --reload saleor.asgi:application
     env_file:
       - common.env
       - backend.env
