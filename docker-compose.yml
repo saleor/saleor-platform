@@ -2,13 +2,9 @@ version: "3.4"
 
 services:
   api:
+    image: ghcr.io/saleor/saleor:3.11.8
     ports:
       - 8000:8000
-    build:
-      context: ./saleor
-      dockerfile: ./Dockerfile
-      args:
-        STATIC_URL: "/static/"
     restart: unless-stopped
     networks:
       - saleor-backend-tier
@@ -19,48 +15,21 @@ services:
       - redis
       - jaeger
     volumes:
-      - ./saleor/saleor/:/app/saleor:Z
-      - ./saleor/templates/:/app/templates:Z
-      - ./saleor/tests/:/app/tests
       # shared volume between worker and api for media
       - saleor-media:/app/media
-    command: uvicorn --host 0.0.0.0 --port 8000 --reload saleor.asgi:application
     env_file:
       - common.env
       - backend.env
     environment:
       - JAEGER_AGENT_HOST=jaeger
-      - STOREFRONT_URL=http://localhost:3000/
       - DASHBOARD_URL=http://localhost:9000/
       - ALLOWED_HOSTS=localhost,api
 
-  storefront:
-    extends:
-      file: ./react-storefront/docker-compose.yml
-      service: storefront
-    networks:
-      - saleor-backend-tier
-    depends_on:
-      - api
-      - saleor-app-checkout
-
-  saleor-app-checkout:
-    extends:
-      file: ./react-storefront/docker-compose.yml
-      service: saleor-app-checkout
-    networks:
-      - saleor-backend-tier
-    depends_on:
-      - api
-
   dashboard:
-    build:
-      context: ./saleor-dashboard
-      dockerfile: ./Dockerfile
+    image: ghcr.io/saleor/saleor-dashboard:3.11.3
     ports:
       - 9000:80
     restart: unless-stopped
-
 
   db:
     image: library/postgres:13-alpine
@@ -87,11 +56,7 @@ services:
       - saleor-redis:/data
 
   worker:
-    build:
-      context: ./saleor
-      dockerfile: ./Dockerfile
-      args:
-        STATIC_URL: "/static/"
+    image: ghcr.io/saleor/saleor:3.11.5
     command: celery -A saleor --app=saleor.celeryconf:app worker --loglevel=info -B
     restart: unless-stopped
     networks:
@@ -103,8 +68,6 @@ services:
       - redis
       - mailhog
     volumes:
-      - ./saleor/saleor/:/app/saleor:Z,cached
-      - ./saleor/templates/:/app/templates:Z,cached
       # shared volume between worker and api for media
       - saleor-media:/app/media
 

@@ -1,4 +1,4 @@
-name: test-upgrade-submodules
+name: test-platform
 on: pull_request
 
 jobs:
@@ -7,9 +7,7 @@ jobs:
 
     steps:
       - uses: actions/checkout@v3
-        with:
-          submodules: recursive
       - name: Build
-        run: docker-compose build
+        run: docker compose build
       - name: Run backend tests
-        run: docker-compose run api pytest
+        run: docker compose run api pytest
