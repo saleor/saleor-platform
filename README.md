@@ -91,19 +91,6 @@ docker compose up
 - [How to run application parts?](#how-to-run-application-parts)
 - [How to update the subprojects to the newest versions?](#how-to-update-the-subprojects-to-the-newest-versions)
 
-## How to update the subprojects to the newest versions?
-This repository contains the newest stable versions.
-When a new release is published, pull a new version of this repository.
-In order to update all the subprojects to their newest versions, run:
-```shell
-git submodule update --remote
-```
-
-You can find the latest version of Saleor and Dashboard in their individual repositories:
-
-- https://github.com/saleor/saleor
-- https://github.com/saleor/saleor-dashboard
-
 ## How to solve issues with lack of available space or build errors after an update
 
 Most of the time both issues can be solved by cleaning up space taken by old containers. After that, we build again whole platform. 
