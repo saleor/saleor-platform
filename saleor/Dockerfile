@@ -1,4 +1,4 @@
-FROM ghcr.io/saleor/saleor:3.11.12
+FROM ghcr.io/saleor/saleor:3.13.11
 
 RUN apt-get -y update \
   && apt-get install -y redir \

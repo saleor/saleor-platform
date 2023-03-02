@@ -2,7 +2,9 @@ version: "3.4"
 
 services:
   api:
-    image: ghcr.io/saleor/saleor:3.13.11
+    build:
+      context: saleor
+    command: gunicorn --bind :8000 --workers 4 --worker-class saleor.asgi.gunicorn_worker.UvicornWorker saleor.asgi:application
     ports:
       - 8000:8000
     restart: unless-stopped
@@ -14,6 +16,8 @@ services:
       - db
       - redis
       - jaeger
+    extra_hosts:
+      - host.docker.internal:host-gateway
     volumes:
       # shared volume between worker and api for media
       - saleor-media:/app/media
@@ -24,6 +28,7 @@ services:
       - JAEGER_AGENT_HOST=jaeger
       - DASHBOARD_URL=http://localhost:9000/
       - ALLOWED_HOSTS=localhost,api
+      - LOCAL_DEV_APP_PORT
 
   dashboard:
     image: ghcr.io/saleor/saleor-dashboard:3.12.7
@@ -56,11 +61,14 @@ services:
       - saleor-redis:/data
 
   worker:
-    image: ghcr.io/saleor/saleor:3.13.11
+    build:
+      context: saleor
     command: celery -A saleor --app=saleor.celeryconf:app worker --loglevel=info -B
     restart: unless-stopped
     networks:
       - saleor-backend-tier
+    extra_hosts:
+      - host.docker.internal:host-gateway
     env_file:
       - common.env
       - backend.env
@@ -70,6 +78,8 @@ services:
     volumes:
       # shared volume between worker and api for media
       - saleor-media:/app/media
+    environment:
+      - LOCAL_DEV_APP_PORT
 
   jaeger:
     image: jaegertracing/all-in-one
