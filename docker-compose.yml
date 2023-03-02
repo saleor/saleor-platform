@@ -2,7 +2,7 @@ version: "3.4"
 
 services:
   api:
-    image: ghcr.io/saleor/saleor:3.11.11
+    image: ghcr.io/saleor/saleor:3.11.12
     ports:
       - 8000:8000
     restart: unless-stopped
