@@ -1,7 +1,7 @@
 FROM ghcr.io/saleor/saleor:3.13.11
 
 RUN apt-get -y update \
-  && apt-get install -y redir \
+  && apt-get install -y socat \
   # Cleanup apt cache
   && apt-get clean \
   && rm -rf /var/lib/apt/lists/*
