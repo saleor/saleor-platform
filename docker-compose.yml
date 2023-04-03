@@ -66,7 +66,7 @@ services:
       - backend.env
     depends_on:
       - redis
-      - mailhog
+      - mailpit
     volumes:
       # shared volume between worker and api for media
       - saleor-media:/app/media
@@ -85,8 +85,8 @@ services:
     networks:
       - saleor-backend-tier
 
-  mailhog:
-    image: mailhog/mailhog
+  mailpit:
+    image: axllent/mailpit
     ports:
       - 1025:1025 # smtp server
       - 8025:8025 # web ui. Visit http://localhost:8025/ to check emails

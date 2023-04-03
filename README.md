@@ -29,7 +29,7 @@
 Saleor Platform is the easiest way to start local development with all the major Saleor services:
 - [Core GraphQL API](https://github.com/saleor/saleor)
 - [Dashboard](https://github.com/saleor/saleor-dashboard)
-- Mailhog (Test email interface)
+- Mailpit (Test email interface)
 - Jaeger (APM)
 - The necessary databases, cache, etc.
 
@@ -83,7 +83,7 @@ docker compose up
 - Saleor Core (API) - http://localhost:8000
 - Saleor Dashboard - http://localhost:9000
 - Jaeger UI (APM) - http://localhost:16686
-- Mailhog (Test email interface) - http://localhost:8025
+- Mailpit (Test email interface) - http://localhost:8025
 
 # Troubleshooting
 
