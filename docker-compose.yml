@@ -46,7 +46,7 @@ services:
       - POSTGRES_PASSWORD=saleor
 
   redis:
-    image: library/redis:5.0-alpine
+    image: library/redis:7.0-alpine
     ports:
       - 6379:6379
     restart: unless-stopped
