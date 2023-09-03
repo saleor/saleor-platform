@@ -22,13 +22,13 @@ services:
       - backend.env
     environment:
       - JAEGER_AGENT_HOST=jaeger
-      - DASHBOARD_URL=http://localhost:9000/
+      - DASHBOARD_URL=http://localhost:9003/
       - ALLOWED_HOSTS=localhost,api
 
   dashboard:
     image: ghcr.io/saleor/saleor-dashboard:3.15.2
     ports:
-      - 9000:80
+      - 9003:80
     restart: unless-stopped
 
   db:
