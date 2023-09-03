@@ -4,7 +4,7 @@ services:
   api:
     image: ghcr.io/saleor/saleor:3.15.0
     ports:
-      - 8000:8000
+      - 3009:8000
     restart: unless-stopped
     networks:
       - saleor-backend-tier
@@ -22,7 +22,7 @@ services:
       - backend.env
     environment:
       - JAEGER_AGENT_HOST=jaeger
-      - DASHBOARD_URL=http://localhost:9003/
+      - DASHBOARD_URL=http://localhost:9000/
       - ALLOWED_HOSTS=localhost,api
 
   dashboard:
