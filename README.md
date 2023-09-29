@@ -89,7 +89,6 @@ docker compose up
 
 - [How to solve issues with lack of available space or build errors after an update](#how-to-solve-issues-with-lack-of-available-space-or-build-errors-after-an-update)
 - [How to run application parts?](#how-to-run-application-parts)
-- [How to update the subprojects to the newest versions?](#how-to-update-the-subprojects-to-the-newest-versions)
 
 ## How to solve issues with lack of available space or build errors after an update
 
