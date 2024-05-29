@@ -32,7 +32,7 @@ services:
     restart: unless-stopped
 
   db:
-    image: library/postgres:13-alpine
+    image: library/postgres:15-alpine
     ports:
       - 5432:5432
     restart: unless-stopped
