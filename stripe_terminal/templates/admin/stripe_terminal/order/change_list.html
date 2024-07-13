@@ -1,0 +1,28 @@
+{% extends "admin/change_list.html" %}
+
+{% block object-tools-items %}
+    <div class="object-tools">
+        <ul class="object-tools">
+            {% if cl.opts.admin_order_field %}
+                <li>
+                    <a href="{% url 'admin:order-pay' cl.opts.pk %}">Pay by Terminal</a>
+                </li>
+                <li>
+                    <a href="{% url 'admin:order-print-receipt' cl.opts.pk %}">Print Receipt</a>
+                </li>
+                <li>
+                    <a href="{% url 'admin:order-reprint-receipt' cl.opts.pk %}">Reprint Receipt</a>
+                </li>
+                <li>
+                    <a href="{% url 'admin:order-cancel' cl.opts.pk %}">Cancel Order</a>
+                </li>
+                <li>
+                    <a href="{% url 'admin:order-refund' cl.opts.pk %}">Refund Order</a>
+                </li>
+                <li>
+                    <a href="{% url 'admin:order-view-in-stripe' cl.opts.pk %}">View in Stripe Dashboard</a>
+                </li>
+            {% endif %}
+        </ul>
+    </div>
+{% endblock %}

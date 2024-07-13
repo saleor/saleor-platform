@@ -1,0 +1,40 @@
+{% extends "admin/change_form.html" %}
+
+{% block submit_buttons_bottom %}
+    {{ block.super }}
+    <div class="object-tools custom-buttons" style="margin: 10px 0; padding: 10px 0; border-top: 1px solid #ccc;">
+        <ul style="display: flex; flex-wrap: wrap; list-style: none; padding: 0; margin: 0;">
+            <li style="margin-right: 10px; margin-bottom: 10px;">
+                <a class="button red" href="{% url 'admin:order-pay' original.pk %}" style="padding: 10px 15px; background: #007bff; color: white; border: 1px solid #007bff; border-radius: 4px; text-decoration: none; display: inline-block;">
+                    Pay by Terminal
+                </a>
+            </li>
+            <li style="margin-right: 10px; margin-bottom: 10px;">
+                <a class="button" href="{% url 'admin:order-print-receipt' original.pk %}" style="padding: 10px 15px; background: #007bff; color: white; border: 1px solid #007bff; border-radius: 4px; text-decoration: none; display: inline-block;">
+                    Print Receipt
+                </a>
+            </li>
+            <li style="margin-right: 10px; margin-bottom: 10px;">
+                <a class="button" href="{% url 'admin:order-reprint-receipt' original.pk %}" style="padding: 10px 15px; background: #007bff; color: white; border: 1px solid #007bff; border-radius: 4px; text-decoration: none; display: inline-block;">
+                    Reprint Receipt
+                </a>
+            </li>
+            <li style="margin-right: 10px; margin-bottom: 10px;">
+                <a class="button" href="{% url 'admin:order-cancel' original.pk %}" style="padding: 10px 15px; background: #dc3545; color: white; border: 1px solid #dc3545; border-radius: 4px; text-decoration: none; display: inline-block;">
+                    Cancel Order
+                </a>
+            </li>
+            <li style="margin-right: 10px; margin-bottom: 10px;">
+                <a class="button" href="{% url 'admin:order-refund' original.pk %}" style="padding: 10px 15px; background: #007bff; color: white; border: 1px solid #007bff; border-radius: 4px; text-decoration: none; display: inline-block;">
+                    Refund Order
+                </a>
+            </li>
+            <li style="margin-right: 10px; margin-bottom: 10px;">
+                <a class="button" href="{% url 'admin:order-view-in-stripe' original.pk %}" style="padding: 10px 15px; background: #007bff; color: white; border: 1px solid #007bff; border-radius: 4px; text-decoration: none; display: inline-block;">
+                    View in Stripe Dashboard
+                </a>
+            </li>
+        </ul>
+    </div>
+    
+{% endblock %}
