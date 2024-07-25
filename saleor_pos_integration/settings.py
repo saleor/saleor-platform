@@ -137,3 +137,5 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 ### STRIPE CONFIGURATION
 STRIPE_API_KEY = os.environ.get('STRIPE_API_KEY')
 STRIPE_PAYMENT_URL = os.environ.get('STRIPE_PAYMENT_URL')
+SALEOR_API_URL = os.environ.get('SALEOR_API_URL')
+API_TOKEN = os.environ.get('API_TOKEN')

@@ -1,0 +1,55 @@
+{
+    "id": "stripe-terminal-integration",
+    "version": "1.0.0",
+    "name": "Stripe Terminal Integration",
+    "permissions": [
+        "MANAGE_ORDERS",
+        "MANAGE_PRODUCTS"
+    ],
+    "webhooks": [
+        {
+            "name": "Order Created",
+            "asyncEvents": ["ORDER_CREATED"],
+            "query": "query { order { id } }",
+            "targetUrl": "https://your-app-url/webhooks/order-created/"
+        }
+    ],
+    "extensions": [
+        {
+            "label": "Pay by Terminal",
+            "url": "https://your-app-url/extensions/pay-by-terminal",
+            "mount": "ORDER_DETAILS_MORE_ACTIONS",
+            "permissions": ["MANAGE_ORDERS"]
+        },
+        {
+            "label": "Print Receipt",
+            "url": "https://your-app-url/extensions/print-receipt",
+            "mount": "ORDER_DETAILS_MORE_ACTIONS",
+            "permissions": ["MANAGE_ORDERS"]
+        },
+        {
+            "label": "Re-print Receipt",
+            "url": "https://your-app-url/extensions/reprint-receipt",
+            "mount": "ORDER_DETAILS_MORE_ACTIONS",
+            "permissions": ["MANAGE_ORDERS"]
+        },
+        {
+            "label": "Cancel Order",
+            "url": "https://your-app-url/extensions/cancel-order",
+            "mount": "ORDER_DETAILS_MORE_ACTIONS",
+            "permissions": ["MANAGE_ORDERS"]
+        },
+        {
+            "label": "Refund Order",
+            "url": "https://your-app-url/extensions/refund-order",
+            "mount": "ORDER_DETAILS_MORE_ACTIONS",
+            "permissions": ["MANAGE_ORDERS"]
+        },
+        {
+            "label": "View in Stripe Dashboard",
+            "url": "https://your-app-url/extensions/view-in-stripe",
+            "mount": "ORDER_DETAILS_MORE_ACTIONS",
+            "permissions": ["MANAGE_ORDERS"]
+        }
+    ]
+}

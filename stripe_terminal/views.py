@@ -8,9 +8,14 @@ from rest_framework.response import Response
 from django.http import HttpResponse
 from stripe_terminal.models import Order
 from stripe_terminal.serializers import OrderSerializer
+from rest_framework.views import APIView
+import requests
+from django.conf import settings
 
 stripe.api_key = settings.STRIPE_API_KEY
 pdfkit_config = pdfkit.configuration(wkhtmltopdf='/usr/bin/wkhtmltopdf')
+SALEOR_API_URL = settings.SALEOR_API_URL
+API_TOKEN = settings.API_TOKEN
 
 
 class OrderViewSet(viewsets.ModelViewSet):
@@ -87,3 +92,48 @@ class OrderViewSet(viewsets.ModelViewSet):
         order = self.get_object()
         dashboard_url = f"{settings.STRIPE_PAYMENT_URL}/{order.payment_intent_id}"
         return Response({'url': dashboard_url}, status=status.HTTP_200_OK)
+    
+
+class CreateOrderView(APIView):
+    def post(self, request):
+        serializer = OrderSerializer(data=request.data)
+        if serializer.is_valid():
+            input_data = {
+                "input": serializer.validated_data
+            }
+            headers = {
+                "Authorization": f"Bearer {API_TOKEN}",
+                "Content-Type": "application/json"
+            }
+            create_order_mutation = """
+            mutation createOrder($input: DraftOrderCreateInput!) {
+              draftOrderCreate(input: $input) {
+                order {
+                  id
+                  number
+                  status
+                  total {
+                    gross {
+                      amount
+                      currency
+                    }
+                  }
+                  lines {
+                    id
+                    productName
+                    quantity
+                  }
+                }
+                errors {
+                  field
+                  message
+                }
+              }
+            }
+            """
+            response = requests.post(SALEOR_API_URL, json={"query": create_order_mutation, "variables": input_data}, headers=headers)
+            if response.status_code == 200:
+                return Response(response.json(), status=status.HTTP_201_CREATED)
+            else:
+                return Response(response.json(), status=status.HTTP_400_BAD_REQUEST)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)

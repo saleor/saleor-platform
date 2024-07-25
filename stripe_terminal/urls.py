@@ -1,6 +1,6 @@
 from django.urls import path, include
 from rest_framework.routers import DefaultRouter
-from .views import OrderViewSet
+from .views import OrderViewSet, CreateOrderView
 
 router = DefaultRouter()
 router.register(r'orders', OrderViewSet)
@@ -13,4 +13,5 @@ urlpatterns = [
     path('orders/<int:pk>/cancel/', OrderViewSet.as_view({'post': 'cancel_order'}), name='order-cancel'),
     path('orders/<int:pk>/refund/', OrderViewSet.as_view({'post': 'refund_order'}), name='order-refund'),
     path('orders/<int:pk>/view-in-stripe/', OrderViewSet.as_view({'get': 'view_in_stripe_dashboard'}), name='order-view-in-stripe'),
+    path('create-order/', CreateOrderView.as_view(), name='create-order'),
 ]
