@@ -1,7 +1,9 @@
 #!/bin/bash
 DIR="$( cd "$( dirname "$0" )" && pwd )"
 SNAPSHOT=$DIR"/update-automation-snapshot.sql"
-perl -pi -e 's/update_automation_snapshot_staging_saleor_cloud/public/' $SNAPSHOT
+# perl -pi -e 's/update_automation_snapshot_staging_saleor_cloud/public/' $SNAPSHOT
+sed -i '' 's/update_automation_snapshot_staging_saleor_cloud/public/' $SNAPSHOT
+sed -i '' 's/update_automation_snapshot_staging_saleor_cloud/public/' $SNAPSHOT
 # please note that you should not use this password on production services
 DB_URL="postgresql://saleor:saleor@localhost:5432/"
 FULL_DB_URL=$DB_URL"e2e"
