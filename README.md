@@ -1,3 +1,7 @@
+Voici le README mis à jour avec les instructions spécifiques pour Windows et Linux, en utilisant les scripts de démarrage existants dans le projet :
+
+---
+
 ![Saleor Platform](https://user-images.githubusercontent.com/249912/71523206-4e45f800-28c8-11ea-84ba-345a9bfc998a.png)
 
 <div align="center">
@@ -58,26 +62,12 @@ git clone https://github.com/saleor/saleor-platform.git
 cd saleor-platform
 ```
 
-3. Build the application:
-```shell
-docker compose build
-```
+3. Build the application and run the setup scripts:
 
-4. Apply Django migrations:
-```shell
-docker compose run --rm api python3 manage.py migrate
-```
+- **Windows** : Exécuter `start-app.ps1`
+- **Linux** : Exécuter `start-app.sh`
 
-5. Populate the database with example data and create the admin user:
-```shell
-docker compose run --rm api python3 manage.py populatedb --createsuperuser
-```
-*Note that `--createsuperuser` argument creates an admin account for `admin@example.com` with the password set to `admin`.*
-
-6. Run the application:
-```shell
-docker compose up
-```
+Ces scripts exécuteront les commandes nécessaires pour construire l'application, appliquer les migrations, peupler la base de données et lancer l'application.
 
 ## Where is the application running?
 - Saleor Core (API) - http://localhost:8000
@@ -87,13 +77,18 @@ docker compose up
 
 # Troubleshooting
 
-- [How to solve issues with lack of available space or build errors after an update](#how-to-solve-issues-with-lack-of-available-space-or-build-errors-after-an-update)
-- [How to run application parts?](#how-to-run-application-parts)
+- [Troubleshooting](#troubleshooting)
+  - [How to solve issues with lack of available space or build errors after an update](#how-to-solve-issues-with-lack-of-available-space-or-build-errors-after-an-update)
+    - [Still no available space](#still-no-available-space)
+    - [Issues with migrations after changing the versions - resetting the database](#issues-with-migrations-after-changing-the-versions---resetting-the-database)
+  - [How to run application parts?](#how-to-run-application-parts)
+  - [Feedback](#feedback)
+  - [License](#license)
+      - [Crafted with ❤️ by Saleor Commerce](#crafted-with-️-by-saleor-commerce)
 
 ## How to solve issues with lack of available space or build errors after an update
 
 Most of the time both issues can be solved by cleaning up space taken by old containers. After that, we build again whole platform. 
-
 
 1. Make sure docker stack is not running
 ```shell
