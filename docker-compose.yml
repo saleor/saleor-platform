@@ -4,7 +4,7 @@ services:
   api:
     image: ghcr.io/saleor/saleor:3.20
     ports:
-      - 8000:8000
+      - 3009:8000
     restart: unless-stopped
     networks:
       - saleor-backend-tier
@@ -28,7 +28,7 @@ services:
   dashboard:
     image: ghcr.io/saleor/saleor-dashboard:latest
     ports:
-      - 9000:80
+      - 9003:80
     restart: unless-stopped
 
   db:
