@@ -58,23 +58,18 @@ git clone https://github.com/saleor/saleor-platform.git
 cd saleor-platform
 ```
 
-3. Build the application:
-```shell
-docker compose build
-```
-
-4. Apply Django migrations:
+3. Apply Django migrations:
 ```shell
 docker compose run --rm api python3 manage.py migrate
 ```
 
-5. Populate the database with example data and create the admin user:
+4. Populate the database with example data and create the admin user:
 ```shell
 docker compose run --rm api python3 manage.py populatedb --createsuperuser
 ```
 *Note that `--createsuperuser` argument creates an admin account for `admin@example.com` with the password set to `admin`.*
 
-6. Run the application:
+5. Run the application:
 ```shell
 docker compose up
 ```
