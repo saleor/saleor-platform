@@ -1,4 +1,8 @@
 steps:
+  # Initialize git submodules
+  - name: 'gcr.io/cloud-builders/git'
+    args: ['submodule', 'update', '--init', '--recursive']
+
   # Build API image
   - name: 'gcr.io/cloud-builders/docker'
     args: ['build', '-t', 'gcr.io/jobwin/saleor-api', '.']
@@ -6,15 +10,6 @@ steps:
   # Push to Container Registry
   - name: 'gcr.io/cloud-builders/docker'
     args: ['push', 'gcr.io/jobwin/saleor-api']
-
-  # Get database password from Secret Manager
-  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
-    entrypoint: 'bash'
-    args:
-      - '-c'
-      - |
-        echo "$$DB_PASSWORD" > /workspace/db_password
-    secretEnv: ['DB_PASSWORD']
 
   # Deploy to Cloud Run
   - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
@@ -34,47 +29,21 @@ steps:
       - 'saleor-sql-sa@jobwin.iam.gserviceaccount.com'
       - '--set-env-vars'
       - |
-        DATABASE_URL=postgresql://saleor-user:$(cat /workspace/db_password)@//cloudsql/jobwin:us-central1:saleor-db/saleor,
+        DATABASE_URL=postgresql://saleor-user:${_DB_PASSWORD}@//cloudsql/jobwin:us-central1:saleor-db/saleor,
         PROJECT_ID=jobwin,
         ALLOWED_HOSTS=*.run.app,
-        DEBUG=False,
-        GOOGLE_CLOUD_PROJECT=jobwin
-      - '--cpu'
-      - '1'
-      - '--memory'
-      - '2Gi'
-      - '--min-instances'
-      - '1'
-      - '--max-instances'
-      - '10'
-      - '--port'
-      - '8000'
-      - '--timeout'
-      - '300'
-      - '--cpu-throttling'
-      - 'false'
-
-  # Set up Cloud SQL connection
-  - name: 'gcr.io/cloud-builders/gcloud'
-    args:
-      - 'run'
-      - 'services'
-      - 'update'
-      - 'saleor-api'
+        DEBUG=False
       - '--add-cloudsql-instances'
       - 'jobwin:us-central1:saleor-db'
-      - '--region'
-      - 'us-central1'
 
 images:
   - 'gcr.io/jobwin/saleor-api'
 
+substitutions:
+  _DB_PASSWORD: ${_DB_PASSWORD}
+  _REGION: us-central1
+
 options:
   logging: CLOUD_LOGGING_ONLY
-
-availableSecrets:
-  secretManager:
-    - versionName: projects/jobwin/secrets/saleor-db-password/versions/latest
-      env: 'DB_PASSWORD'
 
 timeout: '1800s'
