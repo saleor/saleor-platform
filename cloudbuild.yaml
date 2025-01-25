@@ -1,18 +1,49 @@
 steps:
+  # Pull and retag the Saleor image
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['pull', 'ghcr.io/saleor/saleor:3.20']
+
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['tag', 'ghcr.io/saleor/saleor:3.20', 'gcr.io/$PROJECT_ID/saleor:3.20']
+
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['push', 'gcr.io/$PROJECT_ID/saleor:3.20']
+
+  # Deploy to Cloud Run
   - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
-    entrypoint: 'bash'
+    entrypoint: gcloud
     args:
-      - '-c'
+      - 'run'
+      - 'deploy'
+      - 'saleor-api'
+      - '--image'
+      - 'gcr.io/$PROJECT_ID/saleor:3.20'
+      - '--region'
+      - 'us-central1'
+      - '--platform'
+      - 'managed'
+      - '--allow-unauthenticated'
+      - '--service-account'
+      - 'saleor-sql-sa@jobwin.iam.gserviceaccount.com'
+      - '--set-env-vars'
       - |
-        sed "s/\${_DB_PASSWORD}/$_DB_PASSWORD/g; s/\${_SECRET_KEY}/$_SECRET_KEY/g" deployment.yaml > deployment_final.yaml
-        gcloud run services replace deployment_final.yaml \
-          --platform=managed \
-          --region=us-central1 \
-          --project=jobwin
+        DATABASE_URL=postgresql://saleor-user:${_DB_PASSWORD}@//cloudsql/jobwin:us-central1:saleor-db/saleor,
+        ALLOWED_HOSTS=*.run.app,
+        DEBUG=False,
+        SECRET_KEY=${_SECRET_KEY}
+      - '--add-cloudsql-instances'
+      - 'jobwin:us-central1:saleor-db'
+      - '--port'
+      - '8000'
+      - '--memory'
+      - '1Gi'
 
 substitutions:
   _DB_PASSWORD: ""
   _SECRET_KEY: ""
+
+images:
+  - 'gcr.io/$PROJECT_ID/saleor:3.20'
 
 options:
   logging: CLOUD_LOGGING_ONLY
