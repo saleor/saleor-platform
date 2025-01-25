@@ -4,10 +4,10 @@ steps:
     args: ['pull', 'ghcr.io/saleor/saleor:3.20']
 
   - name: 'gcr.io/cloud-builders/docker'
-    args: ['tag', 'ghcr.io/saleor/saleor:3.20', 'gcr.io/$PROJECT_ID/saleor:3.20']
+    args: ['tag', 'ghcr.io/saleor/saleor:3.20', 'gcr.io/jobwin/saleor:3.20']
 
   - name: 'gcr.io/cloud-builders/docker'
-    args: ['push', 'gcr.io/$PROJECT_ID/saleor:3.20']
+    args: ['push', 'gcr.io/jobwin/saleor:3.20']
 
   # Deploy to Cloud Run
   - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
@@ -17,7 +17,7 @@ steps:
       - 'deploy'
       - 'saleor-api'
       - '--image'
-      - 'gcr.io/$PROJECT_ID/saleor:3.20'
+      - 'gcr.io/jobwin/saleor:3.20'
       - '--region'
       - 'us-central1'
       - '--platform'
@@ -43,7 +43,7 @@ substitutions:
   _SECRET_KEY: ""
 
 images:
-  - 'gcr.io/$PROJECT_ID/saleor:3.20'
+  - 'gcr.io/jobwin/saleor:3.20'
 
 options:
   logging: CLOUD_LOGGING_ONLY
