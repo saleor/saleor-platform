@@ -1,0 +1,18 @@
+apiVersion: serving.knative.dev/v1
+kind: Service
+metadata:
+  name: saleor-api
+spec:
+  template:
+    spec:
+      containers:
+      - image: ghcr.io/saleor/saleor:3.20
+        env:
+        - name: DATABASE_URL
+          value: "postgresql://saleor-user:${_DB_PASSWORD}@//cloudsql/jobwin:us-central1:saleor-db/saleor"
+        - name: ALLOWED_HOSTS
+          value: "*.run.app"
+        - name: DEBUG
+          value: "False"
+        - name: SECRET_KEY
+          value: "${_SECRET_KEY}"
