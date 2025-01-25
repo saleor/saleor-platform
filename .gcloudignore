@@ -1,12 +1,7 @@
 cat > .gcloudignore << 'EOL'
 .git
 .gitignore
-.github
-**/.git
-**/.gitignore
-**/__pycache__
-**/*.pyc
-**/.pytest_cache
-**/.coverage
-**/htmlcov
+node_modules
+__pycache__
+*.pyc
 EOL

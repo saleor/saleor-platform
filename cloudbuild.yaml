@@ -1,5 +1,5 @@
 steps:
-  # Deploy API to Cloud Run
+  # Deploy to Cloud Run
   - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
     entrypoint: gcloud
     args:
@@ -7,7 +7,7 @@ steps:
       - 'deploy'
       - 'saleor-api'
       - '--image'
-      - 'ghcr.io/saleor/saleor:3.20'  # Using official Saleor image
+      - 'ghcr.io/saleor/saleor:3.20'
       - '--region'
       - 'us-central1'
       - '--platform'
@@ -20,13 +20,15 @@ steps:
         DATABASE_URL=postgresql://saleor-user:${_DB_PASSWORD}@//cloudsql/jobwin:us-central1:saleor-db/saleor,
         ALLOWED_HOSTS=*.run.app,
         DEBUG=False,
-        JAEGER_AGENT_HOST=jaeger,
-        SECRET_KEY=${_SECRET_KEY},
-        REDIS_URL=redis://redis:6379/0
+        SECRET_KEY=${_SECRET_KEY}
       - '--add-cloudsql-instances'
       - 'jobwin:us-central1:saleor-db'
+      - '--port'
+      - '8000'
+      - '--memory'
+      - '1Gi'
 
-  # Deploy Dashboard to Cloud Run
+  # Deploy Dashboard
   - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
     entrypoint: gcloud
     args:
@@ -43,8 +45,9 @@ steps:
       - '--port'
       - '80'
 
+substitutions:
+  _DB_PASSWORD: ""
+  _SECRET_KEY: ""
+
 options:
   logging: CLOUD_LOGGING_ONLY
-  dynamic_substitutions: true
-
-timeout: '1800s'
