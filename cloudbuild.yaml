@@ -1,11 +1,9 @@
 steps:
-  # Initialize git submodules
-  - name: 'gcr.io/cloud-builders/git'
-    args: ['submodule', 'update', '--init', '--recursive']
-
   # Build API image
   - name: 'gcr.io/cloud-builders/docker'
     args: ['build', '-t', 'gcr.io/jobwin/saleor-api', '.']
+    env:
+      - 'DOCKER_BUILDKIT=1'
 
   # Push to Container Registry
   - name: 'gcr.io/cloud-builders/docker'
@@ -21,7 +19,7 @@ steps:
       - '--image'
       - 'gcr.io/jobwin/saleor-api'
       - '--region'
-      - 'us-central1'  # Hardcoded region instead of substitution
+      - 'us-central1'
       - '--platform'
       - 'managed'
       - '--allow-unauthenticated'
@@ -40,9 +38,10 @@ images:
   - 'gcr.io/jobwin/saleor-api'
 
 substitutions:
-  _DB_PASSWORD: ${_DB_PASSWORD}  # Only keeping the necessary substitution
+  _DB_PASSWORD: ${_DB_PASSWORD}
 
 options:
   logging: CLOUD_LOGGING_ONLY
+  dynamic_substitutions: true
 
 timeout: '1800s'
