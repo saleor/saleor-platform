@@ -21,7 +21,7 @@ steps:
       - '--image'
       - 'gcr.io/jobwin/saleor-api'
       - '--region'
-      - 'us-central1'
+      - 'us-central1'  # Hardcoded region instead of substitution
       - '--platform'
       - 'managed'
       - '--allow-unauthenticated'
@@ -40,8 +40,7 @@ images:
   - 'gcr.io/jobwin/saleor-api'
 
 substitutions:
-  _DB_PASSWORD: ${_DB_PASSWORD}
-  _REGION: us-central1
+  _DB_PASSWORD: ${_DB_PASSWORD}  # Only keeping the necessary substitution
 
 options:
   logging: CLOUD_LOGGING_ONLY
