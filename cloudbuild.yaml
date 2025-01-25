@@ -1,15 +1,5 @@
 steps:
-  # Build API image
-  - name: 'gcr.io/cloud-builders/docker'
-    args: ['build', '-t', 'gcr.io/jobwin/saleor-api', '.']
-    env:
-      - 'DOCKER_BUILDKIT=1'
-
-  # Push to Container Registry
-  - name: 'gcr.io/cloud-builders/docker'
-    args: ['push', 'gcr.io/jobwin/saleor-api']
-
-  # Deploy to Cloud Run
+  # Deploy API to Cloud Run
   - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
     entrypoint: gcloud
     args:
@@ -17,7 +7,7 @@ steps:
       - 'deploy'
       - 'saleor-api'
       - '--image'
-      - 'gcr.io/jobwin/saleor-api'
+      - 'ghcr.io/saleor/saleor:3.20'  # Using official Saleor image
       - '--region'
       - 'us-central1'
       - '--platform'
@@ -28,17 +18,30 @@ steps:
       - '--set-env-vars'
       - |
         DATABASE_URL=postgresql://saleor-user:${_DB_PASSWORD}@//cloudsql/jobwin:us-central1:saleor-db/saleor,
-        PROJECT_ID=jobwin,
         ALLOWED_HOSTS=*.run.app,
-        DEBUG=False
+        DEBUG=False,
+        JAEGER_AGENT_HOST=jaeger,
+        SECRET_KEY=${_SECRET_KEY},
+        REDIS_URL=redis://redis:6379/0
       - '--add-cloudsql-instances'
       - 'jobwin:us-central1:saleor-db'
 
-images:
-  - 'gcr.io/jobwin/saleor-api'
-
-substitutions:
-  _DB_PASSWORD: ${_DB_PASSWORD}
+  # Deploy Dashboard to Cloud Run
+  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+    entrypoint: gcloud
+    args:
+      - 'run'
+      - 'deploy'
+      - 'saleor-dashboard'
+      - '--image'
+      - 'ghcr.io/saleor/saleor-dashboard:latest'
+      - '--region'
+      - 'us-central1'
+      - '--platform'
+      - 'managed'
+      - '--allow-unauthenticated'
+      - '--port'
+      - '80'
 
 options:
   logging: CLOUD_LOGGING_ONLY
