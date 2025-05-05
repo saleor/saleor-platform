@@ -21,7 +21,6 @@ services:
       - common.env
       - backend.env
     environment:
-      - JAEGER_AGENT_HOST=jaeger
       - DASHBOARD_URL=http://localhost:9000/
       - ALLOWED_HOSTS=localhost,api
 
@@ -72,15 +71,11 @@ services:
       - saleor-media:/app/media
 
   jaeger:
-    image: jaegertracing/all-in-one
+    image: jaegertracing/jaeger
     ports:
-      - "5775:5775/udp"
-      - "6831:6831/udp"
-      - "6832:6832/udp"
-      - "5778:5778"
       - "16686:16686"
-      - "14268:14268"
-      - "9411:9411"
+      - "4317:4317"
+      - "4318:4318"
     restart: unless-stopped
     networks:
       - saleor-backend-tier
