@@ -1,14 +1,8 @@
-version: "3.4"
-
 services:
   api:
+    image: ghcr.io/saleor/saleor:3.21
     ports:
       - 8000:8000
-    build:
-      context: ./saleor
-      dockerfile: ./Dockerfile
-      args:
-        STATIC_URL: "/static/"
     restart: unless-stopped
     networks:
       - saleor-backend-tier
@@ -19,51 +13,23 @@ services:
       - redis
       - jaeger
     volumes:
-      - ./saleor/saleor/:/app/saleor:Z
-      - ./saleor/templates/:/app/templates:Z
-      - ./saleor/tests/:/app/tests
       # shared volume between worker and api for media
       - saleor-media:/app/media
-    command: python manage.py runserver 0.0.0.0:8000
     env_file:
       - common.env
       - backend.env
     environment:
-      - JAEGER_AGENT_HOST=jaeger
-      - STOREFRONT_URL=http://localhost:3000/
       - DASHBOARD_URL=http://localhost:9000/
       - ALLOWED_HOSTS=localhost,api
 
-  storefront:
-    extends:
-      file: ./react-storefront/docker-compose.yml
-      service: storefront
-    networks:
-      - saleor-backend-tier
-    depends_on:
-      - api
-      - saleor-app-checkout
-
-  saleor-app-checkout:
-    extends:
-      file: ./react-storefront/docker-compose.yml
-      service: saleor-app-checkout
-    networks:
-      - saleor-backend-tier
-    depends_on:
-      - api
-
   dashboard:
-    build:
-      context: ./saleor-dashboard
-      dockerfile: ./Dockerfile
+    image: ghcr.io/saleor/saleor-dashboard:latest
     ports:
       - 9000:80
     restart: unless-stopped
 
-
   db:
-    image: library/postgres:13-alpine
+    image: library/postgres:15-alpine
     ports:
       - 5432:5432
     restart: unless-stopped
@@ -77,7 +43,7 @@ services:
       - POSTGRES_PASSWORD=saleor
 
   redis:
-    image: library/redis:5.0-alpine
+    image: library/redis:7.0-alpine
     ports:
       - 6379:6379
     restart: unless-stopped
@@ -87,11 +53,7 @@ services:
       - saleor-redis:/data
 
   worker:
-    build:
-      context: ./saleor
-      dockerfile: ./Dockerfile
-      args:
-        STATIC_URL: "/static/"
+    image: ghcr.io/saleor/saleor:3.21
     command: celery -A saleor --app=saleor.celeryconf:app worker --loglevel=info -B
     restart: unless-stopped
     networks:
@@ -101,29 +63,26 @@ services:
       - backend.env
     depends_on:
       - redis
-      - mailhog
+      - mailpit
     volumes:
-      - ./saleor/saleor/:/app/saleor:Z,cached
-      - ./saleor/templates/:/app/templates:Z,cached
       # shared volume between worker and api for media
       - saleor-media:/app/media
 
   jaeger:
-    image: jaegertracing/all-in-one
+    image: jaegertracing/jaeger
     ports:
-      - "5775:5775/udp"
-      - "6831:6831/udp"
-      - "6832:6832/udp"
-      - "5778:5778"
       - "16686:16686"
-      - "14268:14268"
-      - "9411:9411"
+      - "4317:4317"
+      - "4318:4318"
     restart: unless-stopped
     networks:
       - saleor-backend-tier
+    volumes:
+      - type: tmpfs
+        target: /tmp
 
-  mailhog:
-    image: mailhog/mailhog
+  mailpit:
+    image: axllent/mailpit
     ports:
       - 1025:1025 # smtp server
       - 8025:8025 # web ui. Visit http://localhost:8025/ to check emails
