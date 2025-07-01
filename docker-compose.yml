@@ -81,6 +81,52 @@ services:
       - type: tmpfs
         target: /tmp
 
+  shipping-app:
+    build: ../saleor-otel-simulator
+    restart: unless-stopped
+    networks:
+      - saleor-backend-tier
+    environment:
+      - OTEL_EXPORTER_OTLP_ENDPOINT=http://otel-collector:4317
+      - OTEL_SERVICE_NAME=shipping-app
+      - OTEL_TRACES_SAMPLER=parentbased_traceidratio
+      - MAX_SLEEP=0.800
+      - ERROR_RATE=0.5
+
+  checkout-app:
+    build: ../saleor-otel-simulator
+    restart: unless-stopped
+    networks:
+      - saleor-backend-tier
+    environment:
+      - OTEL_EXPORTER_OTLP_ENDPOINT=http://otel-collector:4317
+      - OTEL_SERVICE_NAME=checkout-app
+      - OTEL_TRACES_SAMPLER=parentbased_traceidratio
+
+  storefront:
+    build: ../saleor-otel-simulator
+    restart: unless-stopped
+    networks:
+      - saleor-backend-tier
+    environment:
+      - OTEL_EXPORTER_OTLP_ENDPOINT=http://otel-collector:4317
+      - OTEL_SERVICE_NAME=storefront
+      - STARTUP_DELAY=25
+      - WORKERS_COUNT=3
+      - MAX_SLEEP=5
+      - SALEOR_URL=http://api:8000/graphql/
+    command: opentelemetry-instrument python storefront.py 
+
+  otel-collector:
+    image: otel/opentelemetry-collector-contrib
+    volumes:
+      - ./otel-collector-config.yaml:/etc/otelcol-contrib/config.yaml
+    restart: unless-stopped
+    networks:
+      - saleor-backend-tier
+    depends_on:
+      - jaeger
+
   mailpit:
     image: axllent/mailpit
     ports:

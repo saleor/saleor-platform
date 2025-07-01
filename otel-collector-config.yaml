@@ -1,0 +1,50 @@
+receivers:
+  otlp:
+    protocols:
+      grpc:
+        endpoint: 0.0.0.0:4317
+      http:
+        endpoint: 0.0.0.0:4318
+
+exporters:
+  otlp/jaeger:
+    endpoint: jaeger:4317
+    tls:
+      insecure: true
+
+processors:
+  filter:
+    error_mode: propagate
+    traces:
+      span:
+        - instrumentation_scope.name != "saleor.service"
+    metrics:
+      metric:
+        - instrumentation_scope.name != "saleor.service"
+    logs:
+      log_record:
+        - instrumentation_scope.name != "saleor.service"
+
+  batch:
+    send_batch_max_size: 1000
+    send_batch_size: 100
+    timeout: 10s
+
+  groupbyattrs/domain:
+    keys:
+      - saleor.environment.domain
+
+  transform/resource:
+    error_mode: propagate
+    trace_statements:
+      - set(resource.attributes["service.name"], resource.attributes["saleor.environment.domain"]) where resource.attributes["service.name"] == "saleor"
+    metric_statements:
+      - set(resource.attributes["service.name"], resource.attributes["saleor.environment.domain"]) where resource.attributes["service.name"] == "saleor"
+    
+service:
+  pipelines:
+    traces:
+      receivers: [ otlp ]
+      processors: [ batch, groupbyattrs/domain ]
+      # processors: [ filter, batch, groupbyattrs/domain, transform/resource ]
+      exporters: [ otlp/jaeger ]
