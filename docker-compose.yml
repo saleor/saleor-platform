@@ -1,6 +1,6 @@
 services:
   api:
-    image: ghcr.io/saleor/saleor:3.21
+    image: ghcr.io/saleor/saleor:3.22
     ports:
       - 8000:8000
     restart: unless-stopped
@@ -53,7 +53,7 @@ services:
       - saleor-redis:/data
 
   worker:
-    image: ghcr.io/saleor/saleor:3.21
+    image: ghcr.io/saleor/saleor:3.22
     command: celery -A saleor --app=saleor.celeryconf:app worker --loglevel=info -B
     restart: unless-stopped
     networks:
