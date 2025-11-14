@@ -10,4 +10,4 @@ jobs:
       - name: Build
         run: docker compose build
       - name: Run backend tests
-        run: docker compose run api pytest
+        run: docker compose run api pytest --allow-hosts cache
