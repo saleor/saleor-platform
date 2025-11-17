@@ -20,7 +20,7 @@ services:
       - backend.env
     environment:
       - DASHBOARD_URL=http://localhost:9000/
-      - ALLOWED_HOSTS=localhost,api
+      - ALLOWED_HOSTS=localhost,127.0.0.1,api
 
   dashboard:
     image: ghcr.io/saleor/saleor-dashboard:latest
