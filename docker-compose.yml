@@ -1,6 +1,6 @@
 services:
   api:
-    image: ghcr.io/saleor/saleor:3.22
+    image: ghcr.io/saleor/saleor:3.23
     ports:
       - 8000:8000
     restart: unless-stopped
@@ -23,7 +23,7 @@ services:
       - ALLOWED_HOSTS=localhost,127.0.0.1,api
 
   dashboard:
-    image: ghcr.io/saleor/saleor-dashboard:latest
+    image: ghcr.io/saleor/saleor-dashboard:3.23
     ports:
       - 9000:80
     restart: unless-stopped
