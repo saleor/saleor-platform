@@ -1,1 +1,61 @@
-.idea
+# === IDE ===
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# === Environment variables ===
+.env
+*.env
+backend.env
+common.env
+.env.*
+!*.env.example
+!*.example
+
+# === Node ===
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# === Python ===
+__pycache__/
+*.py[cod]
+*.pyo
+*.egg-info/
+dist/
+build/
+.eggs/
+*.egg
+venv/
+.venv/
+
+# === Secrets & Credentials ===
+*.pem
+*.key
+*.p12
+*.pfx
+*.jks
+*.keystore
+credentials.json
+service-account*.json
+.secrets/
+secrets/
+
+# === Databases ===
+*.sqlite
+*.sqlite3
+*.db
+
+# === OS ===
+.DS_Store
+Thumbs.db
+*.log
+
+# === Claude ===
+.claude/settings.local.json
+
+# === Docker (local overrides) ===
+docker-compose.override.yml

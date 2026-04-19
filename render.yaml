@@ -1,0 +1,100 @@
+# Render Blueprint — Saleor 3.22 MVP (ADR-ECOM-001)
+# Deploy: Render Dashboard → New Blueprint Instance → paste this repo URL
+# Cost: ~$21/mes (3x Starter $7 + Redis free)
+# Scope: API headless only (no dashboard, no Jaeger, no Mailpit)
+# Country: CO | Currency: COP
+
+services:
+  # --- Saleor API (GraphQL) ---
+  - type: web
+    name: saleor-api
+    runtime: image
+    image:
+      url: ghcr.io/saleor/saleor:3.22
+    plan: starter
+    region: oregon
+    healthCheckPath: /health/
+    envVars:
+      - key: DATABASE_URL
+        fromDatabase:
+          name: saleor-db
+          property: connectionString
+      - key: CACHE_URL
+        fromService:
+          name: saleor-redis
+          type: redis
+          property: connectionString
+      - key: CELERY_BROKER_URL
+        fromService:
+          name: saleor-redis
+          type: redis
+          property: connectionString
+      - key: SECRET_KEY
+        fromGroup: saleor-shared
+      - key: ALLOWED_HOSTS
+        value: ".onrender.com"
+      - key: DEFAULT_CHANNEL_SLUG
+        value: default-channel
+      - key: DEFAULT_COUNTRY
+        value: CO
+      - key: DEFAULT_CURRENCY
+        value: COP
+      - key: HTTP_IP_FILTER_ENABLED
+        value: "True"
+      - key: HTTP_IP_FILTER_ALLOW_LOOPBACK_IPS
+        value: "False"
+      - key: ENABLE_ACCOUNT_CONFIRMATION_BY_EMAIL
+        value: "False"
+
+  # --- Saleor Worker (Celery) ---
+  - type: worker
+    name: saleor-worker
+    runtime: image
+    image:
+      url: ghcr.io/saleor/saleor:3.22
+    plan: starter
+    region: oregon
+    dockerCommand: celery -A saleor --app=saleor.celeryconf:app worker --loglevel=info -B
+    envVars:
+      - key: DATABASE_URL
+        fromDatabase:
+          name: saleor-db
+          property: connectionString
+      - key: CACHE_URL
+        fromService:
+          name: saleor-redis
+          type: redis
+          property: connectionString
+      - key: CELERY_BROKER_URL
+        fromService:
+          name: saleor-redis
+          type: redis
+          property: connectionString
+      - key: SECRET_KEY
+        fromGroup: saleor-shared
+      - key: DEFAULT_CHANNEL_SLUG
+        value: default-channel
+      - key: DEFAULT_COUNTRY
+        value: CO
+      - key: DEFAULT_CURRENCY
+        value: COP
+
+  # --- Redis (cache + Celery broker) ---
+  - type: redis
+    name: saleor-redis
+    plan: free
+    region: oregon
+    maxmemoryPolicy: allkeys-lru
+    ipAllowList: []  # only internal access
+
+databases:
+  - name: saleor-db
+    plan: starter
+    region: oregon
+    postgresMajorVersion: "15"
+
+envGroups:
+  - name: saleor-shared
+    envVars:
+      - key: SECRET_KEY
+        generateValue: true
